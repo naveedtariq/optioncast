@@ -35,7 +35,7 @@ group :development, :test do
     gem 'annotate', '~> 2.4.1.beta'  
     gem 'pry'
     gem 'pry-nav'
-    gem 'pry-stack_explorer'   
+    gem 'pry-plus'   
     gem 'factory_girl_rails'
 end
 
