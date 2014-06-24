@@ -21,8 +21,10 @@ module OptionCast
     # config.i18n.default_locale = :de
     
     console do
-      require "pry"
-      config.console = Pry
+      if Rails.env.development?
+        require "pry"
+        config.console = Pry
+      end
     end
   end
 end
