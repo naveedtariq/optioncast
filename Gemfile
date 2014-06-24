@@ -30,6 +30,8 @@ gem 'devise'
 
 gem 'omniauth'
 
+gem 'activeadmin', github: 'gregbell/active_admin'
+
 group :development, :test do
     gem 'rspec-rails', '~> 2.14.2'
     gem 'annotate', '~> 2.4.1.beta'  
