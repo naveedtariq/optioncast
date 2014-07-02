@@ -35,6 +35,10 @@ gem 'omniauth'
 
 gem 'activeadmin', github: 'gregbell/active_admin'
 
+gem 'bootstrap-sass', '~> 3.2.0'
+
+gem 'autoprefixer-rails'
+
 group :development, :test do
     gem 'rspec-rails', '~> 2.14.2'
     gem 'annotate', '~> 2.4.1.beta'  
