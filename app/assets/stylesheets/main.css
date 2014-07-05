@@ -365,7 +365,7 @@ a.bricky:hover {
 .navbar {
 	margin: 0 !important;
 	padding: 0 !important;
-	min-height: 100px; /* revised to 100px from 42px to display menu items that are wrapping - DSB 7/2/2014 */
+	min-height: 42px; 
 	border-radius: 0;
 	border-right: none;
 	border-left: none;
@@ -4969,7 +4969,7 @@ p.fa.fa-bar-chart-o {
   border:none;
 }
 .ls-responsive .ls-nav-left-arrow {
-  left: 1e+7px;
+  left: 17px; /* was 1e+7px causing error -- changed to 17px DSB 7/3/14 */ 
   position: absolute;
   z-index: 0;
 }
