@@ -1,4 +1,7 @@
+<div id="sign_in">
 <h2>Sign in</h2>
+
+<%= render '/shared/error_messages' %>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
@@ -16,3 +19,4 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+</div>
