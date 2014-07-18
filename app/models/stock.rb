@@ -10,6 +10,8 @@
 
 class Stock < ActiveRecord::Base
   
+  has_many :options, dependent: :destroy
+  
   validates :ticker, presence: true, uniqueness: true
   
 end

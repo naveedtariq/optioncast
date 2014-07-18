@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140717222658) do
+ActiveRecord::Schema.define(version: 20140718184953) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,26 @@ ActiveRecord::Schema.define(version: 20140717222658) do
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "options", force: true do |t|
+    t.integer  "stock_id"
+    t.decimal  "price",              precision: 6, scale: 2
+    t.integer  "volume"
+    t.date     "expiry"
+    t.string   "option_type"
+    t.decimal  "strike",             precision: 7, scale: 2
+    t.decimal  "last",               precision: 7, scale: 2
+    t.decimal  "bid",                precision: 7, scale: 2
+    t.decimal  "ask",                precision: 7, scale: 2
+    t.integer  "open_interest"
+    t.decimal  "delta",              precision: 7, scale: 4
+    t.decimal  "gamma",              precision: 7, scale: 4
+    t.decimal  "theta",              precision: 7, scale: 4
+    t.decimal  "vega",               precision: 7, scale: 4
+    t.decimal  "implied_volatility", precision: 5, scale: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "stocks", force: true do |t|
     t.string   "ticker"

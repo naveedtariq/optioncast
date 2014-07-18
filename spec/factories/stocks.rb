@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :stock do
-    ticker "MyString"
+    ticker "AAPL"
   end
 end

@@ -17,9 +17,7 @@ describe Stock do
   
   tables = [:options]
   tables.each do |table|
-    describe "#{table} associations" do |table|
-      it { should have_many table }
-    end
+    it { should have_many(table).dependent(:destroy) }
   end
   
   fields = [:ticker]
