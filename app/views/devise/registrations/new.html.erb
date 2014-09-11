@@ -1,21 +1,50 @@
-<h2>Sign up</h2>
+<div class="main-login col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+  <div class="logo"><a href="<%=root_url%>">OptionCast</a></div>
+  <!-- start: LOGIN BOX -->
+  <div class="box-login">
+    <h3>Sign Up</h3>
+    <div class="errorHandler alert alert-danger no-display"> <%= render '/shared/error_messages' %>   </div>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
+      <fieldset>
+        <div class="form-group">
+							<span class="input-icon input-icon-right">
+								<%= f.email_field :email, autofocus: true, class:"form-control", placeholder:"email" %>
+                <i class="fa fa-cog"></i> </span>
+          <!-- To mark the incorrectly filled input, you must add the class "error" to the input -->
+          <!-- example: <input type="text" class="login error" name="login" value="Username" /> -->
+        </div>
+      </fieldset>
+      <fieldset>
+        <div class="form-group">
+							<span class="input-icon input-icon-right">
+                <%= f.password_field :password, autocomplete: "off", class:"form-control password", placeholder:"Password" %>
+                <i class="fa fa-lock"></i>
+								 </span>
+        </div>
+      </fieldset>
+      <fieldset>
+        <div class="form-group ">
+							<span class="input-icon input-icon-right">
+                <%= f.password_field :password_confirmation, autocomplete: "off", class:"form-control password_confirmation", placeholder:"Password confirmation" %>
+                <i class="fa fa-lock"></i>
+								 </span>
+        </div>
+      </fieldset>
+      <div class="form-actions">
+        <%= f.submit"Sign Up", class:"btn btn-bricky pull-left" %>
+      </div>
+    <% end %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
 
-  <div><%= f.label :username %><br />
-  <%= f.text_field :username, autofocus: true %></div>
-  
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+  </div>
+  <!-- end: LOGIN BOX -->
+  <!-- start: FORGOT BOX -->
 
-  <div><%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
+  <!-- start: COPYRIGHT -->
+  <div class="copyright">         2014 &copy; optioncast by Option-Cast Theme. </div>
+  <!-- end: COPYRIGHT -->
+</div>
 
-  <div><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
 
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+<!-- end: BODY -->

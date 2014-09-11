@@ -1,22 +1,160 @@
-<div id="sign_in">
-<h2>Sign in</h2>
 
-<%= render '/shared/error_messages' %>
+<div class="main-login col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+  <div class="logo"><a href="<%=root_url%>">OptionCast</a>
+  </div>
+  <!-- start: LOGIN BOX -->
+  <div class="box-login">
+    <h3>Sign in to your account</h3>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <p>
+      Please enter your email and password to log in.
+    </p>
+    <div class="errorHandler alert alert-danger no-display">
+      <%= render '/shared/error_messages' %>      </div>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), class:"form-login") do |f| %>
+      <fieldset>
+        <div class="form-group">
+							<span class="input-icon input-icon-right">
+								<%= f.email_field :email, autofocus: true, class:"form-control", name:"email", placeholder:"Email" %>
+								<i class="fa fa-user"></i> </span>
+          <!-- To mark the incorrectly filled input, you must add the class "error" to the input -->
+          <!-- example: <input type="text" class="login error" name="login" value="Username" /> -->
+        </div>
+        <div class="form-group form-actions">
+							<span class="input-icon input-icon-right">
+                <%= f.password_field :password, autocomplete: "off", class:"form-control password", name:"password", placeholder:"Password" %>
+								<i class="fa fa-lock"></i>
+								<a class="forgot" href="<%=new_password_path(resource_name)%>">
+                  I forgot my password
+                </a> </span>
+        </div>
+        <div class="form-actions">
+          <label for="remember" class="checkbox-inline">
+            <%= f.check_box :remember_me, class:"grey remember", id:"remember", name:"remember" %>
+            Keep me signed in
+          </label>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <%= button_tag(type: 'submit', class:"btn btn-bricky pull-left") do %>
+            Login <i class='fa fa-arrow-circle-right'></i>
+          <% end %>
+        </div>
+    <% end %>
 
-  <div><%= f.label :username %><br />
-  <%= f.text_field :username, autofocus: true %></div>
-
-  <div><%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
-
-  <div><%= f.submit "Sign in" %></div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+        <div class="new-account">
+          Don't have an account yet?
+          <a href="<%=new_registration_path(resource_name)%>" class="register">
+            Create an account
+          </a>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <!-- end: LOGIN BOX -->
+  <!-- start: FORGOT BOX -->
+  <div class="box-forgot">
+    <h3>Forget Password?</h3>
+    <p>
+      Enter your e-mail address below to reset your password.
+    </p>
+    <form class="form-forgot">
+      <div class="errorHandler alert alert-danger no-display">
+        <i class="fa fa-remove-sign"></i> You have some form errors. Please check below.
+      </div>
+      <fieldset>
+        <div class="form-group">
+							<span class="input-icon">
+								<input type="email" class="form-control" name="email" placeholder="Email">
+								<i class="fa fa-envelope"></i> </span>
+        </div>
+        <div class="form-actions">
+          <a class="btn btn-light-grey go-back">
+            <i class="fa fa-circle-arrow-left"></i> Back
+          </a>
+          <button type="submit" class="btn btn-bricky pull-left">
+            Submit <i class="fa fa-arrow-circle-right"></i>
+          </button>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <!-- end: FORGOT BOX -->
+  <!-- start: REGISTER BOX -->
+  <div class="box-register">
+    <h3>Sign Up</h3>
+    <p>
+      Enter your personal details below:
+    </p>
+    <form class="form-register">
+      <div class="errorHandler alert alert-danger no-display">
+        <i class="fa fa-remove-sign"></i> You have some form errors. Please check below.
+      </div>
+      <fieldset>
+        <div class="form-group">
+          <input type="text" class="form-control" name="full_name" placeholder="Full Name">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" name="address" placeholder="Address">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" name="city" placeholder="City">
+        </div>
+        <div class="form-group">
+          <div>
+            <label class="radio-inline">
+              <input type="radio" class="grey" value="F" name="gender">
+              Female
+            </label>
+            <label class="radio-inline">
+              <input type="radio" class="grey" value="M" name="gender">
+              Male
+            </label>
+          </div>
+        </div>
+        <p>
+          Enter your account details below:
+        </p>
+        <div class="form-group">
+							<span class="input-icon">
+								<input type="email" class="form-control" name="email" placeholder="Email">
+								<i class="fa fa-envelope"></i> </span>
+        </div>
+        <div class="form-group">
+							<span class="input-icon">
+								<input type="password" class="form-control" id="password" name="password" placeholder="Password">
+								<i class="fa fa-lock"></i> </span>
+        </div>
+        <div class="form-group">
+							<span class="input-icon">
+								<input type="password" class="form-control" name="password_again" placeholder="Password Again">
+								<i class="fa fa-lock"></i> </span>
+        </div>
+        <div class="form-group">
+          <div>
+            <label for="agree" class="checkbox-inline">
+              <input type="checkbox" class="grey agree" id="agree" name="agree">
+              I agree to the Terms of Service and Privacy Policy
+            </label>
+          </div>
+        </div>
+        <div class="form-actions">
+          <a class="btn btn-light-grey go-back">
+            <i class="fa fa-circle-arrow-left"></i> Back
+          </a>
+          <button type="submit" class="btn btn-bricky pull-left">
+            Submit <i class="fa fa-arrow-circle-right"></i>
+          </button>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <!-- end: REGISTER BOX -->
+  <!-- start: COPYRIGHT -->
+  <div class="copyright">
+    2014 &copy; optioncast by Option-Cast Theme.
+  </div>
+  <!-- end: COPYRIGHT -->
 </div>
+
+
+<!-- end: BODY -->

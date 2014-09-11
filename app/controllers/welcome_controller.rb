@@ -1,7 +1,8 @@
 class WelcomeController < ApplicationController
-  before_action :authenticate_user!
-  
+  #before_action :authenticate_user!
+
   def index
-    @user = current_user
+    render layout: false
+    #@user = current_user
   end
 end

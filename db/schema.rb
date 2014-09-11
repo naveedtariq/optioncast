@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140718184953) do
+ActiveRecord::Schema.define(version: 20140911123516) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,23 @@ ActiveRecord::Schema.define(version: 20140718184953) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "answers", force: true do |t|
+    t.string   "text"
+    t.integer  "order"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "question_id"
+  end
+
+  add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
+
+  create_table "goals", force: true do |t|
+    t.string   "name"
+    t.integer  "order"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "options", force: true do |t|
     t.integer  "stock_id"
     t.decimal  "price",              precision: 6, scale: 2
@@ -70,14 +87,59 @@ ActiveRecord::Schema.define(version: 20140718184953) do
     t.datetime "updated_at"
   end
 
+  create_table "plan_criteria", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "question_id"
+    t.integer  "plan_id"
+    t.integer  "answer_id"
+  end
+
+  add_index "plan_criteria", ["answer_id"], name: "index_plan_criteria_on_answer_id", using: :btree
+  add_index "plan_criteria", ["plan_id"], name: "index_plan_criteria_on_plan_id", using: :btree
+  add_index "plan_criteria", ["question_id"], name: "index_plan_criteria_on_question_id", using: :btree
+
+  create_table "plans", force: true do |t|
+    t.string   "name"
+    t.text     "details"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "goal_id"
+  end
+
+  add_index "plans", ["goal_id"], name: "index_plans_on_goal_id", using: :btree
+
+  create_table "questions", force: true do |t|
+    t.string   "text"
+    t.integer  "order"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "goal_id"
+    t.string   "kind"
+  end
+
+  add_index "questions", ["goal_id"], name: "index_questions_on_goal_id", using: :btree
+
   create_table "stocks", force: true do |t|
     t.string   "ticker"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  create_table "user_answers", force: true do |t|
+    t.integer  "answer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "answer_id"
+    t.integer  "question_id"
+  end
+
+  add_index "user_answers", ["answer_id"], name: "index_user_answers_on_answer_id", using: :btree
+  add_index "user_answers", ["question_id"], name: "index_user_answers_on_question_id", using: :btree
+  add_index "user_answers", ["user_id"], name: "index_user_answers_on_user_id", using: :btree
+
   create_table "users", force: true do |t|
-    t.string   "username"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -94,9 +156,11 @@ ActiveRecord::Schema.define(version: 20140718184953) do
     t.string   "unconfirmed_email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "goal_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["goal_id"], name: "index_users_on_goal_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

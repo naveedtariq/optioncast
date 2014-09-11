@@ -1,7 +1,583 @@
-<div class="main-content">
-	<div class="container">
-		<%= render '/shared/error_messages' %>
-		<h1>Welcome#index</h1>
-		<p>Find me in app/views/welcome/index.html.erb</p>
-	</div>
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= full_title(yield(:title)) %></title>
+  <%= stylesheet_link_tag    'application_index', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application_index', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs5shiv/3.7.05shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+
+<%= render 'layouts/header'%>
+
+<div class="main-slider-wrapper">
+<div id="main-slider" class="liquid-slider">
+
+<div>
+  <h2 class="title"><p class="fa fa-search"></p><span>Overview</span></h2>
+  <div class="slider">
+    <div class="container slider_container">
+
+      <div class="row">
+        <div class="col-sm-7 col-md-8 col-lg-8">
+          <div class="marketing-text">
+            <h1>
+              Make Better Trades <br>
+              with Options Data.
+            </h1>
+            <p>
+              A free, powerful option analytics service that provides value through statisical arbitrage. Click on the icons above for more information. Need advanced or downloadable option data? <br>
+              <a href="pricing">Pro plan is just $25/mo.</a>
+            </p>
+          </div>
+          <!--/MARKETING TEXT-->
+        </div>
+
+        <%= render 'welcome/sign_up'%>
+
+      </div>
+      <!--/ROW-->
+
+    </div><!--container-->
+  </div><!--row slider-->
+
 </div>
+
+
+<div>
+  <h2 class="title"><p class="clip-checkmark-circle"></p><span>Stats</span></h2>
+
+  <div class="slider">
+    <div class="container slider_container">
+
+      <div class="row">
+        <div class="col-sm-7 col-md-8 col-lg-8">
+          <div class="marketing-text">
+            <h1>
+              Make Better Trades <br>
+              with Options Stats.
+            </h1>
+            <p>
+              Option stats provides end of day volatility change, put/call ratio, volume changes and more. Use the sign up form to the right for a free account. Need advanced or downloadable option data?<br>
+              <a href="pricing">Pro plan is just $25/mo.</a>
+            </p>
+          </div>
+          <!--/MARKETING TEXT-->
+        </div>
+
+        <%= render 'welcome/sign_up'%>
+
+      </div>
+      <!--/ROW-->
+
+    </div><!--container-->
+  </div><!--row slider-->
+
+</div>
+<div>
+  <h2 class="title"><p class="clip-arrow"></p><span>Sentiment</span></h2>
+
+  <div class="slider">
+    <div class="container slider_container">
+
+      <div class="row">
+        <div class="col-sm-7 col-md-8 col-lg-8">
+          <div class="marketing-text">
+            <h1>
+              View Over/Under<br>
+              Valued Options.
+            </h1>
+            <p>
+              Option sentiment uses percentiles to calculate overvalued and undervalued sentiment. Use the sign up form to the right for a free account. Need advanced or downloadable option data?<br>
+              <a href="pricing">Pro plan is just $25/mo.</a>
+            </p>
+          </div>
+          <!--/MARKETING TEXT-->
+        </div>
+
+        <%= render 'welcome/sign_up'%>
+
+      </div>
+      <!--/ROW-->
+
+    </div><!--container-->
+  </div><!--row slider-->
+
+</div>
+<div>
+  <h2 class="title"><p class="clip-grid-6"></p><span>Open Interest</span></h2>
+
+  <div class="slider">
+    <div class="container slider_container">
+
+      <div class="row">
+        <div class="col-sm-7 col-md-8 col-lg-8">
+          <div class="marketing-text">
+            <h1>
+              Open Interest <br>
+              Charts and Data.
+            </h1>
+            <p>
+              Chart open interest by symbol, calls, puts or indiviudal strikes. Use the sign up form to the right for a free account. Need advanced or downloadable option data?<br>
+              <a href="pricing">Pro plan is just $25/mo.</a>
+            </p>
+          </div>
+          <!--/MARKETING TEXT-->
+        </div>
+
+        <%= render 'welcome/sign_up'%>
+
+      </div>
+      <!--/ROW-->
+
+    </div><!--container-->
+  </div><!--row slider-->
+
+</div>
+<div>
+  <h2 class="title"><p class="clip-stats"></p><span>Charts</span></h2>
+
+  <div class="slider">
+    <div class="container slider_container">
+
+      <div class="row">
+        <div class="col-sm-7 col-md-8 col-lg-8">
+          <div class="marketing-text">
+            <h1>
+              Implied Volatility <br>
+              and Straddle Charts.
+            </h1>
+            <p>
+              View volatility and straddle charts for every option symbol. Use the sign up form to the right for a free account. Need advanced or downloadable option data?<br>
+              <a href="pricing">Pro plan is just $25/mo.</a>
+            </p>
+          </div>
+          <!--/MARKETING TEXT-->
+        </div>
+
+        <%= render 'welcome/sign_up'%>
+
+      </div>
+      <!--/ROW-->
+
+    </div><!--container-->
+  </div><!--row slider-->
+
+</div>
+<div>
+  <h2 class="title"><p class="fa fa-bar-chart-o"></p><span>Averages</span></h2>
+
+  <div class="slider">
+    <div class="container slider_container">
+
+      <div class="row">
+        <div class="col-sm-7 col-md-8 col-lg-8">
+          <div class="marketing-text">
+            <h1>
+              Implied Volatility <br>
+              Daily Averages.
+            </h1>
+            <p>
+              Find average option prices by using the days to expiry. Use the sign up form to the right for a free account. Need advanced or downloadable option data?<br>
+              <a href="pricing">Pro plan is just $25/mo.</a>
+            </p>
+          </div>
+          <!--/MARKETING TEXT-->
+        </div>
+
+        <%= render 'welcome/sign_up'%>
+
+      </div>
+      <!--/ROW-->
+
+    </div><!--container-->
+  </div><!--row slider-->
+
+</div>
+<div>
+  <h2 class="title"><p class="clip-calendar-3"></p><span>Earnings</span></h2>
+
+  <div class="slider">
+    <div class="container slider_container">
+
+      <div class="row">
+        <div class="col-sm-7 col-md-8 col-lg-8">
+          <div class="marketing-text">
+            <h1>
+              Historical Earnings<br>
+              Dates and Data.
+            </h1>
+            <p>
+              View historical earnings dates, stock and option spread results. Use the sign up form to the right for a free account. Need advanced or downloadable option data?<br>
+              <a href="pricing">Pro plan is just $25/mo.</a>
+            </p>
+          </div>
+          <!--/MARKETING TEXT-->
+        </div>
+
+        <%= render 'welcome/sign_up'%>
+
+      </div>
+      <!--/ROW-->
+
+    </div><!--container-->
+  </div><!--row slider-->
+
+</div>
+<div>
+  <h2 class="title"><p class="clip-radio-checked"></p><span>Option Radar</span></h2>
+
+  <div class="slider">
+    <div class="container slider_container">
+
+      <div class="row">
+        <div class="col-sm-7 col-md-8 col-lg-8">
+          <div class="marketing-text">
+            <h1>
+              Make Better Trades <br>
+              with Options Radar.
+            </h1>
+            <p>
+              View options with high volume, call/put ratios, open interest, over/undervalued options and more. Need advanced or downloadable option data?<br>
+              <a href="pricing">Pro plan is just $25/mo.</a>
+            </p>
+          </div>
+          <!--/MARKETING TEXT-->
+        </div>
+
+        <%= render 'welcome/sign_up'%>
+        
+      </div>
+      <!--/ROW-->
+
+    </div><!--container-->
+  </div><!--row slider-->
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- SEARCH ROW
+================================================== -->
+<div class="row search-row">
+  <div class="col-lg-12">
+    <div class="container">
+      <form>
+        <div class="col-xs-12 col-sm-10">
+          <input type="text" class="form-control" placeholder="Enter Stock Symbol...">
+        </div>
+        <div class="col-xs-12 div col-sm-2">
+          <button type="submit" class="btn btn-success">Get Data</button>
+        </div>
+      </form>
+    </div><!--container-->
+  </div><!--col-12-->
+</div><!--row-->
+
+<div class="row table_row">
+  <div class="col-lg-12">
+    <div class="container main_container">
+      <h1 class="text-center">OptionCast Premium gives you even more data at your fingertips.</h1>
+      <p class="text-center">Our options database includes straddle and implied volatility charts, historical earnings dates, spread results, large trade alerts, option radar and more. Available for over 3,500 symbols.</p>
+      <div class="table_start">
+        <div class="table_header">
+          <h2>AAPL Daily Implied Volatility Change</h2>
+        </div>
+        <div class="table_item_header">
+          <ul class="list-unstyled">
+            <li>Expiry</li>
+            <li>Current IV</li>
+            <li>1 Day</li>
+            <li>2 Day</li>
+            <li>3 Day</li>
+          </ul>
+        </div>
+        <div class="table_item">
+          <ul class="list-unstyled">
+            <li>4/19/2014</li>
+            <li>17.37%</li>
+            <li>-19.87%</li>
+            <li>-22.34%</li>
+            <li>-24.25%</li>
+          </ul>
+        </div>
+        <div class="table_item">
+          <ul class="list-unstyled">
+            <li>4/25/2014</li>
+            <li>18.37%</li>
+            <li>-21.34%</li>
+            <li>-18.14%</li>
+            <li>-19.45%</li>
+          </ul>
+        </div>
+        <div class="table_item">
+          <ul class="list-unstyled">
+            <li>5/02/2014</li>
+            <li>20.67%</li>
+            <li>-17.53%</li>
+            <li>-28.31%</li>
+            <li>-24.45%</li>
+          </ul>
+        </div>
+        <div class="table_item no_border">
+          <ul class="list-unstyled">
+            <li>5/09/2014</li>
+            <li>22.17%</li>
+            <li>-11.12%</li>
+            <li>-18.87%</li>
+            <li>-21.57%</li>
+          </ul>
+        </div>
+      </div>
+    </div><!--container-->
+  </div><!--col-12-->
+</div><!--row-->
+
+<div class="row reasons-row">
+  <div class="col-lg-12">
+    <div class="container main_container">
+      <div class="row">
+        <h3 class="text-center">Top Reasons to Sign Up For OptionCast Premium</h3>
+        <ul class="list-unstyled png col-lg-7 col-md-7 col-sm-6">
+          <li>Implied Volatility Charts</li>
+          <li>At The Money Straddle Charts</li>
+          <li>Historical Implied Volatility Charts</li>
+          <li>Option Radar</li>
+          <li>Daily Open Interest Changes</li>
+          <li>Daily Call/Put Volume Changes</li>
+          <li>Option Percentile Ranks</li>
+          <li>Option Under/Over Value Sentiment</li>
+          <li>ALL Future Updates Included</li>
+          <li>No Contracts or Hidden Fees</li>
+        </ul>
+        <ul class="list-unstyled num text-center col-lg-5 col-md-5 col-sm-6">
+          <li><strong>14</strong></li>
+          <li><span>Day Free Trial</span></li>
+          <li><strong>2008</strong></li>
+          <li><span>Historical Data Since</span></li>
+          <li><strong>3,500+</strong></li>
+          <li><span>Stocks with Data</span></li>
+          <li><strong>76%</strong></li>
+          <li><span>Average Probalility of Profit</span></li>
+          <li><strong>54</strong></li>
+          <li><span>Years of Option Trading Experience</span></li>
+        </ul>
+      </div><!--row-->
+    </div><!--container-->
+  </div><!--col-12-->
+</div><!--row-->
+
+<div class="row desc-row">
+  <div class="col-lg-12">
+    <div class="container main_container">
+
+      <h3 class="text-center">The #1 Option Data &amp; Trading Website For Invdividual Traders</h3>
+      <div class="row">
+        <div class="col-lg-4 col-md-4">
+          <img src="assets/icon_search.png" alt="">
+          <h4>Free Data</h4>
+          <p>A free account provides our users with historical volatility charts, open interest and volume changes, and more.</p>
+        </div><!--col-->
+        <div class="col-lg-4 col-md-4">
+          <img src="assets/icon_display.png" alt="">
+          <h4>Easy To Use</h4>
+          <p>Our data is available via the web with no external downloads. Access our data from anyplace at anytime.</p>
+        </div><!--col-->
+        <div class="col-lg-4 col-md-4">
+          <img src="assets/icon_check.png" alt="">
+          <h4>Powerful Data</h4>
+          <p>Our end of day data provies users with all the tools they need to find out what smart money is doing in the options market.</p>
+        </div><!--col-->
+
+        <div class="col-lg-4 col-md-4">
+          <img src="assets/icon_newsletter.png" alt="">
+          <h4>Premium Services</h4>
+          <p>See option sentiment, open interest charts, under/over valued option and more. <a href="/pricing"> Sign up for a 14 day free trial.</a></p>
+        </div><!--col-->
+        <div class="col-lg-4 col-md-4">
+          <img src="assets/icon_brush.png" alt="">
+          <h4>Historical Data</h4>
+          <p>Optioncast provides over 10 years of option data accessible over the web, or <a href="www.optiondata.net">via CSV here</a></p>
+        </div><!--col-->
+        <div class="col-lg-4 col-md-4">
+          <img src="assets/icon_money.png" alt="">
+          <h4>Affordable</h4>
+          <p>OptionCast provides all our data at extremely affordable rates compared to other option vendors.</p>
+        </div><!--col-->
+
+        <p class="text-center clearfix"><a href="what-is-optioncast" class="btn btn-primary btn-large feature-btn">More Features</a></p>
+      </div><!--row-->
+
+    </div><!--container-->
+  </div><!--col-->
+</div><!--row-->
+
+<div class="row about-row">
+  <div class="col-lg-12">
+    <div class="container main_container">
+      <h3 class="text-center">Join hundreds of users trusting OptionCast Data</h3>
+      <p class="text-center">OptionCast is making trading data affordable for indiviudal traders. We're a do-it-yourself trading platform with a focus on the retail trader. </p>
+    </div><!--container-->
+  </div><!--col-->
+</div><!--row-->
+
+<div class="row popover-row">
+  <div class="col-lg-12">
+    <div class="container main_container">
+
+      <div class="row">
+        <div class="col-lg-4 col-lg-offset-2 col-md-4 col-md-offset-2 col-sm-5 col-sm-offset-1 col-xs-12">
+          <div class="popover top">
+            <div class="arrow"></div><!--arrow-->
+            <div class="popover-content">
+              <p>"My first order of business every day is to check the Option Radar and Open Interest charts. I use this data to see where smart money is placing their bets."</p>
+            </div><!--popover-content-->
+          </div><!--popover-->
+          <p class="text-center">James Newton</p>
+        </div><!--col-->
+        <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+          <div class="popover top">
+            <div class="arrow"></div><!--arrow-->
+            <div class="popover-content">
+              <p>"I use OptionCast because this is the only website available that contains historical earnings data. I primarily trade on earnings reports so to see historical stock moves and option spreads is very beneficial."</p>
+            </div><!--popover-content-->
+          </div><!--popover-->
+          <p class="text-center">Sandy Crenshaw</p>
+        </div><!--col-->
+      </div><!--row-->
+
+      <div class="row">
+        <div class="col-lg-4 col-lg-offset-2 col-md-4 col-md-offset-2 col-sm-5 col-sm-offset-1 col-xs-12">
+          <div class="popover top">
+            <div class="arrow"></div><!--arrow-->
+            <div class="popover-content">
+              <p>"The easiest way to find undervalued options. I use the service daily to reinforce my personal trading ideas."</p>
+            </div><!--popover-content-->
+          </div><!--popover-->
+          <p class="text-center">Lorenzo Fowler</p>
+        </div><!--col-->
+        <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+          <div class="popover top">
+            <div class="arrow"></div><!--arrow-->
+            <div class="popover-content">
+              <p>"Considering how inexpensive the service is and how expensive option data cane be, I think OptionCast provides incredible value."</p>
+            </div><!--popover-content-->
+          </div><!--popover-->
+          <p class="text-center">Ben Cornine</p>
+        </div><!--col-->
+
+      </div><!--row-->
+
+      <p class="text-center clearfix"><a href="pricing" class="btn btn-primary btn-large feature-btn">Sign Up</a></p>
+
+    </div><!--container-->
+  </div><!--col-->
+</div><!--row-->
+
+<div class="row bottom-row">
+  <div class="col-lg-12">
+    <div class="container main_container">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="footer_widgets">
+            <p><strong>Contact Us</strong></p>
+            <ul class="list-unstyled">
+              <li id="mail"><a href="mailto:support@optioncast.com">support@optioncast.com</a></li>
+            </ul>
+          </div>
+        </div><!--col-->
+        <div class="col-sm-3">
+          <div class="footer_widgets">
+            <p><strong>Company Information</strong></p>
+            <ul class="list-unstyled">
+              <li><a href="about">About</a></li>
+              <li><a href="/stock-options-blog">Blog</a></li>
+              <li><a href="privacy">Privacy Policy</a></li>
+              <li><a href="terms">Terms of Service</a></li>
+            </ul>
+          </div>
+        </div><!--col-->
+        <div class="col-sm-3">
+          <div class="footer_widgets">
+            <p><strong>Learn &amp; Explore</strong></p>
+            <ul class="list-unstyled">
+              <li><a href="what-is-optioncast">Features</a></li>
+              <li><a href="pricing">Our Pricing</a></li>
+              <li><a href="faq">Help/FAQs</a></li>
+            </ul>
+          </div>
+        </div><!--col-->
+        <div class="col-sm-3">
+          <div class="footer_widgets">
+            <p><strong>Get Started</strong></p>
+            <ul class="list-unstyled">
+              <li><a href="signup">Sign Up</a></li>
+              <li><a href="login">Login</a></li>
+              <li><a href="myaccount">My Account</a></li>
+            </ul>
+          </div>
+        </div><!--col-->
+
+      </div><!--row-->
+    </div><!--container-->
+  </div><!--col-12-->
+</div><!--row-->
+
+<div class="row footer-row">
+  <div class="col-lg-12">
+    <div class="container main_container">
+      <div class="row">
+        <div class="col-sm-8 col-md-8 col-lg-8">
+          <p>&copy;OptionCast - Stock Option Analytics and Data</p>
+        </div><!--col-->
+        <div class="col-sm-4 col-md-4 col-lg-4">
+          <div class="footer_right">
+            <span><img src="assets/followus.png" alt=""></span>
+            <span><a href="#"><img src="assets/icon-twitter.png" alt=""></a></span>
+            <span><a href="#"><img src="assets/icon-facebook.png" alt=""></a></span>
+          </div>
+        </div><!--col-->
+      </div><!--row-->
+    </div><!--container-->
+  </div><!--col-12-->
+</div><!--row-->
+
+
+<script>
+  $('#main-slider').liquidSlider({
+    continuous:false,
+    autoHeight:false,
+    slideEaseDuration:500,
+    heightEaseDuration:500,
+    slideEaseFunction:'animate.css',
+    animateIn:"bounceInLeft",
+    animateOut:"bounceOutRight"
+  });
+</script>
+<script type="text/javascript">
+  $(function(){
+    $('.bottom-row ul li a').hover(function(){
+      $(this).animate({
+        paddingLeft:'6px',
+      },'700');
+
+    }, function() {
+
+      $(this).animate({
+        paddingLeft:'0px',
+      },'400');
+
+    });
+  });
+</script>
+</body>
+</html>
