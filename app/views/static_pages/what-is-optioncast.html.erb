@@ -1,0 +1,232 @@
+<%=render partial: "pricing"%>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="main-content">
+<!-- start: PANEL CONFIGURATION MODAL FORM -->
+<div class="modal fade" id="panel-config" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          ×
+        </button>
+        <h4 class="modal-title">Settings</h4>
+      </div>
+      <div class="modal-body">
+        Select Expiry:
+        <br><br>
+        Select Days to View:
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">
+          Save changes
+        </button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- end: SPANEL CONFIGURATION MODAL FORM -->
+<div class="container" style="min-height: 760px;">
+  <!-- start: PAGE HEADER -->
+  <div class="row">
+    <div class="col-sm-12">
+      <!-- start: PAGE TITLE & BREADCRUMB -->
+      <ol class="breadcrumb">
+        <li>
+          <i class="clip-home-3"></i>
+          <a href="<%=root_url%>">
+            Home
+          </a>
+        </li>
+        <li class="active">
+          Dashboard
+        </li>
+        <li class="search-box">
+          <form class="sidebar-search">
+            <div class="form-group">
+              <input type="text" placeholder="Start Searching..." data-default="130">
+              <button class="submit">
+                <i class="clip-search-3"></i>
+              </button>
+            </div>
+          </form>
+        </li>
+      </ol>
+      <div class="page-header text-center">
+        <h1>What is OptionCast?</h1>
+      </div>
+      <!-- end: PAGE TITLE & BREADCRUMB -->
+    </div>
+  </div>
+  <!-- end: PAGE HEADER -->
+  <!-- start: PAGE CONTENT -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="starting_para">
+        <p>OptionCast is an option data and analytics site that benefits traders through statistical option arbitrage. We help active traders protect and increase profits by analyzing over 10 years of options data. Using our data you can predict option closing prices, option direction and option earnings spread prices. We make data transparent and help traders visualize the options market by charting daily implied volatility, at the money straddle prices, and average straddle prices. In turn, this makes traders who use OptionCast increase profits. Use our data to make your next trade. See below to learn more or <a href="pricing.html">click here to sign up for a 14 day free trial..</a></p>
+      </div>
+    </div>
+  </div><!--End Starting Paragraph-->
+  <div class="border_bottom">
+    <div class="row">
+      <div class="col-md-8 col-sm-8">
+        <div class="table_tab">
+          <div class="table_tab_header">
+            <h2>AAPL Option Data - $525.25</h2>
+            <p>High / Low Implied Volatility <i class="fa fa-question-circle"></i></p>
+          </div>
+          <img src="<%=image_path('wo_img_one.jpg')%>" class="img-responsive" alt="">
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4">
+        <div class="table_right">
+          <div class="single_table">
+            <h3>Option Stats</h3>
+            <p>Includes IV and straddle daily change data put or call ratio , open interest and volumn changes</p>
+          </div>
+          <div class="single_table">
+            <h3>Option Sentiment</h3>
+            <p>Includes under / over valued options average IV and straddle prices and option percentiles</p>
+          </div>
+          <div class="single_table">
+            <h3>Volatility Charts</h3>
+            <p>Includes end of day and historical IV and straddle charts.A simple way to see where IV has been.</p>
+          </div>
+          <div class="single_table">
+            <h3>Straddle Averages</h3>
+            <p>Bar chart of Straddle averages by days to expiry.Easily see where the at the money straddle price should close by the end of the trading day.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="second_table border_bottom">
+    <div class="table_tab_header text-center border_bottom">
+      <h2>Profiting with OptionCast</h2>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-sm-6">
+        <div class="table_two_left">
+          <h3>Hows does OptionCast help me make money?</h3>
+          <ul class="list-unstyled">
+            <li>Profit from underpriced options. We list the most underpriced options vs historical average. Updated daily.</li>
+            <li>Profit from overpriced options. We list the most overpriced options vs historical average. Updated daily.</li>
+            <li>Profit from call/put ratio. See the symbols with the most call activity relative to put activity. Updated daily.</li>
+            <li>Profit from put/call ratio. See the symbols with the most put activity relative to call activity. Updated daily.</li>
+            <li>Profit from earnings spreads. See the average cost of all major option spreads heading into earnings announcements. Updated quarterly.</li>
+            <li>Profit from average straddle and implied volatility levels. Find opportunity when options prices stray from historical levels. Updated daily.</li>
+            <li>Profit from option percentiles. Low percentiles represent buying opportunities. High percentiles represent selling opportunities. Updated daily.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <div class="table_two_right">
+          <img src="<%=image_path('wo_img_two.png')%>" class="img-responsive" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="third_table border_bottom">
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+        <div class="table_tab_header text-center border_bottom">
+          <h2>What is the Option Radar?</h2>
+        </div>
+        <div class="table_three_bottom border_bottom">
+          <h4 class="text-center">Underpriced Straddle <i class="fa fa-question-circle"></i></h4>
+          <img src="<%=image_path('wo_img_four.jpg')%>" class="img-responsive center-block" alt="">
+          <p>The underpriced straddle radar shows under valued options by at the money straddle price. It compares current straddle prices to historical average prices by days to expiry. Any symbol with 0 percentile indicates this is the lowest value of this straddle price with this many days to expiry in the past 3 months, relative to stock price. Data also available for overpriced straddle (and overpriced implied volatility).</p>
+        </div>
+        <div class="table_three_bottom border_bottom">
+          <h4 class="text-center">Underpriced Implied Volatility <i class="fa fa-question-circle"></i></h4>
+          <img src="<%=image_path('wo_img_four.jpg')%>" class="img-responsive center-block" alt="">
+          <p>The underpriced implied volatility radar shows under valued options by implied volatility. It compares current implied volatility levels to historical average implied volatility levels by days to expiry. Any symbol with 0 percentile indicates this is the lowest value of this implied volatility price with this many days to expiry in the past 3 months, relative to stock price. Data also available for overpriced implied volatility (and overpriced straddle).</p>
+        </div>
+        <div class="table_three_bottom border_bottom">
+          <h4 class="text-center">Call / Put Ratio <i class="fa fa-question-circle"></i></h4>
+          <img src="<%=image_path('wo_img_four.jpg')%>" class="img-responsive center-block" alt="">
+          <p>Call/Put ratio indicates symbols with the most calls traded relative to puts traded. Data above 1.0 is when calls traded exceeds puts traded, indicated a bullish sentiment. Data is also available for put/call ratio. </p>
+        </div>
+        <div class="table_three_bottom border_bottom">
+          <h4 class="text-center">Lowest 1 Days IV change <i class="fa fa-question-circle"></i></h4>
+          <img src="<%=image_path('wo_img_four.jpg')%>" class="img-responsive center-block" alt="">
+          <p>Lowest implied volatility move indicates the options where implied volatility has declined the most in the past trading day. Since implied volatility is mean reverting this could indicate a buying opportunity if implied volatility has declined too much. Data is also available for highest implied volatility (and straddle) daily moves.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="four_benefit_chart border_bottom">
+    <div class="row">
+      <div class="table_tab_header text-center border_bottom">
+        <h2>OptionCast Benefits</h2>
+      </div>
+      <div class="col-md-4 col-sm-4 text-center">
+        <div class="single_benefit">
+          <i class="fa fa-desktop"></i>
+          <h3>Visualize Options Trading</h3>
+          <p>Easily view implied volatility and straddle charts. You can see where IV has been and where it's going.</p>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4 text-center">
+        <div class="single_benefit">
+          <i class="fa fa-bullseye"></i>
+          <h3>Visualize Options Trading</h3>
+          <p>Easily view implied volatility and straddle charts. You can see where IV has been and where it's going.</p>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4 text-center">
+        <div class="single_benefit">
+          <i class="fa fa-users"></i>
+          <h3>Visualize Options Trading</h3>
+          <p>Easily view implied volatility and straddle charts. You can see where IV has been and where it's going.</p>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4 text-center">
+        <div class="single_benefit">
+          <i class="fa fa-users"></i>
+          <h3>Visualize Options Trading</h3>
+          <p>Easily view implied volatility and straddle charts. You can see where IV has been and where it's going.</p>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4 text-center">
+        <div class="single_benefit">
+          <i class="fa fa-users"></i>
+          <h3>Visualize Options Trading</h3>
+          <p>Easily view implied volatility and straddle charts. You can see where IV has been and where it's going.</p>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4 text-center">
+        <div class="single_benefit">
+          <i class="fa fa-users"></i>
+          <h3>Visualize Options Trading</h3>
+          <p>Easily view implied volatility and straddle charts. You can see where IV has been and where it's going.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="last_part border_bottom text-center">
+    <div class="row">
+      <div class="col-xs-12">
+        <p>Interested ? Use this link to get a 14 day free trial, cancel any time. <a href="pricing.html">Click here to sign up for OptionCast. </a></p>
+      </div>
+    </div>
+  </div>
+  <!-- end: PAGE CONTENT-->
+</div>
+</div>
