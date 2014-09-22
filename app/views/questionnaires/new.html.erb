@@ -1,0 +1,45 @@
+<div class="main-content">
+  <% #title "New Questionnaire" %>
+
+  <script type="text/javascript">
+      $(window).load(function(){
+          $('#question_modal').modal('show');
+      });
+  </script>
+
+  <div class="modal fade" id="question_modal" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <% @q = Question.find_by_id(@questionnaire.get_current_question) %>
+        
+        <% if @q %>
+          <div class="modal-header">
+            <h3 class="modal-title" id="myModalLabel"><%= @q.text %></h3>
+          </div>
+
+          <form accept-charset="UTF-8" method= "post" action= "/questionnaires" >
+            <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
+            
+            <div class="form-group">    
+              <% if @q.kind == "Value" %>
+                <input type="hidden" name = 'kind' value='Value'>
+                <input type="text" name='answer' placeholder='Answer' class="form-control" style="width: 97%;margin: 1.5%" >
+              <% elsif @q.kind == "Dropdown" %>
+                <input type="hidden" name = 'kind' value='Dropdown'>
+                <%= select_tag('answer', options_for_select(Answer.where(:question_id => @questionnaire.get_current_question).order(:order).collect { |a| [a.text, a.id] }), prompt: "Select", class: "form-control", style: "width: 97%;margin: 1.5%") %>
+              <% end %>
+            </div>
+            <input type="submit" class="btn btn-block btn-success" style="width: 97%;margin: 1.5%" name='next' value='Next'>
+          </form>
+        <% end %>   
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Skip</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>

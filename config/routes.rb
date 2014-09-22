@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   get 'static_pages/home'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -66,6 +67,12 @@ Rails.application.routes.draw do
   get 'about' => "static_pages#about"
   get 'contact' => "static_pages#contact"
 
+  #get '/questionnaires/start', to: 'questionnaires#start', as: 'start_questionnaire'
+  resources :questionnaires do
+    collection do
+      get 'start'
+    end
+  end
 
   #devise_for :users
   devise_for :users, controllers: { registrations: 'registrations', sessions: 'sessions' }

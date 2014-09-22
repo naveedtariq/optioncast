@@ -11,6 +11,10 @@ ActiveAdmin.register Plan do
     actions
   end
 
+  action_item :only => :show do
+    link_to('New Plan', new_admin_plan_path)
+  end
+
   filter :name
   filter :details
   filter :goal

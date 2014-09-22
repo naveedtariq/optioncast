@@ -35,6 +35,9 @@ gem 'omniauth'
 
 gem 'activeadmin', github: 'gregbell/active_admin'
 
+gem 'nifty-generators'
+
+gem 'bootstrap-sass'
 
 group :development, :test do
     gem 'rspec-rails', '~> 2.14.2'
@@ -63,3 +66,5 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+
+#gem "mocha", group: :test

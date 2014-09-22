@@ -10,6 +10,11 @@ ActiveAdmin.register Goal do
     actions
   end
 
+  action_item :only => :show do
+    link_to('New Goal', new_admin_goal_path)
+  end
+
+
   filter :name
   filter :order
   

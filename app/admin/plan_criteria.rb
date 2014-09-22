@@ -21,9 +21,9 @@ ActiveAdmin.register PlanCriteria do
     actions
   end
 
-  filter :"plan_goal_name" ,:label=> "Goal", :as => :select, :collection => Goal.all.map{|g| g.name}
+  filter :"plan_goal_name" ,:label=> "Goal", :as => :select, :collection => proc{ Goal.all.map{|g| g.name} }
   filter :plan
-  filter :question , :as => :select, :collection => Question.all.map{|q| [q.text, q.id]}
+  filter :question , :as => :select, :collection => proc { Question.all.map{|q| [q.text, q.id]} }
   
   form do |f|
     f.inputs "Plan Criteria Details" do

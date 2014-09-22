@@ -15,15 +15,19 @@ ActiveAdmin.register Answer do
     actions
   end
 
+  action_item :only => :show do
+    link_to('New Answer', new_admin_answer_path)
+  end
+
   filter :text
   filter :order
-  filter :"question_text", :label => "Question", :as => :select, :collection => Question.all.map(&:text)
+  filter :"question_text", :label => "Question", :as => :select, :collection => proc { Question.all.map(&:text) }
 
   form do |f|
     f.inputs "Answer Details" do
+      f.input :question, :as => :select, :collection => Question.where(:kind => "Dropdown").map {|q| [q.text, q.id]}
       f.input :text
       f.input :order
-      f.input :question, :as => :select, :collection => Question.all.map {|q| [q.text, q.id]}
     end 
     f.actions
   end

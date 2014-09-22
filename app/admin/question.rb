@@ -12,6 +12,10 @@ ActiveAdmin.register Question do
     actions
   end
 
+  action_item :only => :show do
+    link_to('New Question', new_admin_question_path)
+  end
+
   filter :text
   filter :kind
   filter :order
