@@ -15,10 +15,9 @@
           <h3 class="modal-title" id="myModalLabel">Choose a Goal for your investment</h3>
         </div>
         
-        <form accept-charset="UTF-8" method= "post" action= "/questionnaires" >
+        <form accept-charset="UTF-8" action= "/questionnaires/goal" >
           <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
 
-          
           <div class="form-group">    
               <%= select_tag('goal', options_for_select(Goal.order(:order).collect { |g| [g.name,g.id] }), prompt: "Select a Goal", class: "form-control", style:"width: 97%;margin: 1.5%") %>
           </div>
@@ -33,5 +32,4 @@
       </div>
     </div>
   </div>
-  
-</div>
+  </div>

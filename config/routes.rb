@@ -67,10 +67,10 @@ Rails.application.routes.draw do
   get 'about' => "static_pages#about"
   get 'contact' => "static_pages#contact"
 
-  #get '/questionnaires/start', to: 'questionnaires#start', as: 'start_questionnaire'
   resources :questionnaires do
     collection do
       get 'start'
+      get 'goal'
     end
   end
 

@@ -6,7 +6,11 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
     def after_sign_in_path_for(resource_or_scope)
-      what_is_optioncast_path
+      if admin_user_signed_in?
+        admin_root_path
+      elsif user_signed_in?
+        what_is_optioncast_path
+      end
     end
     
     def after_sign_out_path_for(resource_or_scope)
