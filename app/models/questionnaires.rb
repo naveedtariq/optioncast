@@ -45,7 +45,7 @@ class Questionnaires
       
       @u = User.find_by_id(@q.user_id)
       if @u
-        @u.goal = attributes["goal"]
+        @u.goal_id = attributes["goal"]
         if @u.save
           @q.save  
         end
