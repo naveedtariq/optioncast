@@ -32,18 +32,24 @@ class Questionnaires
   end
 
   def save(attributes = {})
-    puts attributes
     self.answers = attributes["answers"]
     self.answers.each do |a|
-      @u = UserAnswers.new
-      @u.user_id = attributes["user_id"]
-      @u.question_id = a["question"]
+      @q = UserAnswers.new
+      @q.user_id = attributes["user_id"]
+      @q.question_id = a["question"]
       if a["kind"]== Question::Kind::VALUE
-        @u.value = a["answer"]
+        @q.value = a["answer"]
       elsif a["kind"] == Question::Kind::DROPDOWN
-        @u.answer_id = a["answer"]
+        @q.answer_id = a["answer"]
       end
-      @u.save
+      
+      @u = User.find_by_id(@q.user_id)
+      if @u
+        @u.goal = attributes["goal"]
+        if @u.save
+          @q.save  
+        end
+      end
     end
   end
 

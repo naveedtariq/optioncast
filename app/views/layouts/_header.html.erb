@@ -1,16 +1,16 @@
 <div class= "navbar navbar-inverse navbar-fixed-top">
-	<% unless signed_in? %>
+	<% unless user_signed_in? %>
 		<div class="container main_container">
 			<div class="navbar-header">
 				<%= link_to 'OPTIONCAST', root_url, class: "navbar-brand" %>
 			</div>
 			<div class="navbar-tools">
 				<ul class="nav navbar-right">
-                <li><%= link_to raw('<p>Get Started</p><span class="badge"></span>'), start_questionnaires_path %></li>
-								<li><%= link_to raw('<p>About</p><span class="badge"></span>'), "/about" %></li>
-								<li><%= link_to raw('<p>Contact</p><span class="badge"></span>'), "/contact" %></li>
-								<li><%= link_to raw('<p>Sign Up</p><span class="badge"></span>'), "/pricing" %></li>
-								<li><%= link_to raw('<p>Login</p><span class="badge"></span>'), new_user_session_path %></li>
+          <li><%= link_to raw('<p>Get Started</p>'), "/questionnaires/start" %></li>
+					<li><%= link_to raw('<p>About</p>'), "/about" %></li>
+					<li><%= link_to raw('<p>Contact</p>'), "/contact" %></li>
+					<li><%= link_to raw('<p>Sign Up</p>'), "/pricing" %></li>
+					<li><%= link_to raw('<p>Login</p>'), new_user_session_path %></li>    
 				</ul>
 			</div>
 		</div>
@@ -21,9 +21,9 @@
 			</div>
 			<div class="navbar-tools">
 				<ul class="nav navbar-right">
-          <li><%= link_to raw('<p>Get Started</p><span class="badge"></span>'), start_questionnaires_path %></li>
-					<li><%= link_to raw('<p>About</p><span class="badge"></span>'), "/about" %></li>
-          <li><%= link_to raw('<p>Contact</p><span class="badge"></span>'), "/contact" %></li>
+          <li><%= link_to raw('<p>Get Started</p>'), "/questionnaires/start" %></li>
+					<li><%= link_to raw('<p>About</p>'), "/about" %></li>
+          <li><%= link_to raw('<p>Contact</p>'), "/contact" %></li>
           <li class="dropdown current-user">
             <%= link_to raw("#{image_tag("avatar-1-small.jpg", class: "circle-img", alt: "")}#{'<span class="User">'} #{current_user.email} #{'</span> <i class="clip-chevron-down"></i>'}"), "#", class: "dropdown-toggle", data: {  hover: "dropdown", toggle: "dropdown", close_others: "true" } %>
             <ul class="dropdown-menu">

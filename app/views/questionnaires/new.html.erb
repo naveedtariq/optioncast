@@ -2,32 +2,67 @@
   <% #title "New Questionnaire" %>
 
   <script type="text/javascript">
+  
       $(window).load(function(){
+        console.log("asd")
           $('#question_modal').modal('show');
+
+          $('form').on('submit',function(e) {  
+              e.preventDefault();
+              var valuesToSubmit = $(this).serialize();
+              //$('#next').attr("disabled", true);
+              $.ajax({
+                  type: "POST",
+                  url: $(this).attr('action'),
+                  data: valuesToSubmit,
+              }).success(function(json){
+                  console.log(json)
+                  if(json.length <= 1){
+                    $('#question').html("You have successfully completed the Questionnaire\nWould you like to sign up?")
+                    $('form').hide()
+                    $('#signup_button').show();
+                    $('#signup_button').on('click',function(){
+                      window.location.href = '/free_sign_up';  
+                    });
+                    $('#skip_button').on('click',function(){
+                      window.location.href = json[0];  
+                    });
+
+                  }else{
+                    $('#question').html(json[0])
+                    $('#answer').html(json[1])
+                    $('form').attr('action',json[2]) 
+                  }
+                  //$('#next').attr("disabled", false);
+              });
+              return false; // prevents normal behaviour
+          });
       });
+
   </script>
 
-  <div class="modal fade" id="question_modal" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal fade" id="question_modal" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="question" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
 
           <div class="modal-header">
-            <h3 class="modal-title" id="myModalLabel"><%= @question_text %></h3>
+            <h3 class="modal-title" id="question">Choose a Goal for your investment</h3>
           </div>
 
-          <form accept-charset="UTF-8" method= "post" action= "/questionnaires" >
+          <form accept-charset="UTF-8" method= "post" action= "/questionnaires/goal" >
             <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
             
-            <div class="form-group">    
+            <div class="form-group" id="answer">    
 
-              <%=@answer_html %>
+              <%= select_tag('goal', options_for_select(Goal.order(:order).collect { |g| [g.name,g.id] }), prompt: "Select a Goal", required:true, class: "form-control", style:"width: 97%;margin: 1.5%") %>
   
             </div>
-            <input type="submit" class="btn btn-block btn-success" style="width: 97%;margin: 1.5%" name='next' value='Next'>
+            <input type="submit" id='next' class="btn btn-block btn-success" style="width: 97%;margin: 1.5%" value='Next'>
           </form>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Skip</button>
+          <button type="button" id= "signup_button" class="btn btn-block" style="width: 45%;margin: 1.5%; float: left; display:none;" >Sign Up</button>
+          <button type="button" id= "skip_button" class="btn btn-block" style="width: 45%;margin: 1.5%; float: right;" data-dismiss="modal">Skip</button>
         </div>
 
       </div>

@@ -5,11 +5,13 @@ class ApplicationController < ActionController::Base
   
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
-    def after_sign_in_path_for(resource_or_scope)
-      if admin_user_signed_in?
+    def after_sign_in_path_for(resource)
+      if resource.is_a?(AdminUser)
         admin_root_path
-      elsif user_signed_in?
+      elsif resource.is_a?(User)
         what_is_optioncast_path
+      else
+        super
       end
     end
     

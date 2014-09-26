@@ -70,7 +70,7 @@ Rails.application.routes.draw do
   resources :questionnaires do
     collection do
       get 'start'
-      get 'goal'
+      post 'goal'
     end
   end
 
