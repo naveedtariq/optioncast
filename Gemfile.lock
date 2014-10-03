@@ -235,6 +235,9 @@ GEM
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
+    seed_dump (3.2.0)
+      activerecord (~> 4)
+      activesupport (~> 4)
     shoulda-matchers (2.6.1)
       activesupport (>= 3.0.0)
     slop (3.5.0)
@@ -296,6 +299,7 @@ DEPENDENCIES
   rspec-rails (~> 2.14.2)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
+  seed_dump
   shoulda-matchers
   spring
   therubyracer

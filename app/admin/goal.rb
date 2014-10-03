@@ -1,6 +1,7 @@
 ActiveAdmin.register Goal do
   menu :priority => 3
   permit_params :name, :order
+  config.sort_order = "order_asc"
 
   index do
     selectable_column

@@ -1,6 +1,7 @@
 ActiveAdmin.register Question do
   menu :priority => 5
   permit_params :text, :kind, :order, :goal_id
+  config.sort_order = "order_asc"
 
   index do
     selectable_column
@@ -8,7 +9,6 @@ ActiveAdmin.register Question do
     column :text
     column :kind
     column :order
-    column :goal
     actions
   end
 
@@ -19,14 +19,12 @@ ActiveAdmin.register Question do
   filter :text
   filter :kind
   filter :order
-  filter :goal
   
   form do |f|
     f.inputs "Question Details" do
       f.input :text
-      f.input :kind, :as => :select, :collection => [["Value","Value"],["Dropdown","Dropdown"]]
+      f.input :kind, :as => :select, :collection => [["Value","Value"],["Dropdown","Dropdown"],["Date","Date"]], :selected => "Value", :include_blank => false
       f.input :order
-      f.input :goal
     end
     f.actions
   end

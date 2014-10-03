@@ -67,18 +67,14 @@ Rails.application.routes.draw do
   get 'about' => "static_pages#about"
   get 'contact' => "static_pages#contact"
 
-  resources :questionnaires do
-    collection do
-      get 'start'
-      post 'goal'
-    end
-  end
-
   #devise_for :users
-  devise_for :users, controllers: { registrations: 'registrations', sessions: 'sessions' }
+  devise_for :users, controllers: { registrations: 'registrations', sessions: 'sessions', users:'users' }
 
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'  
+    get '/users/questionnaire' => 'users#questionnaire'
+    post '/users/submit' => 'users#submit'
+    post '/users' => 'registrations#create'
   end
 
   #devise_scope :user do

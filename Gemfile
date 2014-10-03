@@ -41,6 +41,8 @@ gem 'bootstrap-sass'
 
 gem 'haml-rails'
 
+gem 'seed_dump'
+
 group :development, :test do
     gem 'rspec-rails', '~> 2.14.2'
     gem 'annotate', '~> 2.4.1.beta'  
