@@ -39,7 +39,7 @@ gem 'nifty-generators'
 
 gem 'bootstrap-sass'
 
-gem 'haml-rails'
+gem 'haml', '~> 4.0.5'
 
 gem 'seed_dump'
 
