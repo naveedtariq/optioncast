@@ -555,9 +555,9 @@ var Main = function () {
     //Window Resize Function
     var runWIndowResize = function (func, threshold, execAsap) {
         //wait until the user is done resizing the window, then execute
-        $(window).clipresize(function () {
-            runElementsPosition();
-        });
+        //$(window).clipresize(function () {
+        //    runElementsPosition();
+        //});
     };
     //function to save user settings
     var runSaveSetting = function () {
@@ -702,7 +702,7 @@ var Main = function () {
             runPanelScroll();
             runShowTab();
             runAccordionFeatures();
-            runCustomCheck();
+            //runCustomCheck();
             runColorPalette();
             runSaveSetting();
             runCustomSetting();

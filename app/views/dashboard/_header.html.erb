@@ -1,0 +1,50 @@
+<!-- Header starts -->
+<div class="row-fluid">
+    <div class="span12">
+
+        <div class="header-top">
+
+            <div class="header-wrapper">
+
+                <%= link_to 'OPTIONCAST', root_url, class: "navbar-brand" %>
+
+                <div class="header-right">
+
+                    <div class="header-divider">&nbsp;</div>
+
+                    <div class="header-divider">
+                        <%= link_to raw('<p>About</p>'), "/about" %>
+                    </div>
+
+
+                    <div class="header-divider">
+                        <%= link_to raw('<p>Contact</p>'), "/contact" %>
+                    </div>
+
+
+                    <div class="user-panel header-divider">
+                        <div class="user-info">
+                            <%= link_to raw("#{image_tag("avatar-1-small.jpg", class: "circle-img", alt: "")}#{'<span class="User">'} #{current_user.email} #{'</span>'}"), "#"%>
+                        </div>
+
+                        <div class="user-dropbox">
+                            <ul>
+                                <li class="user"><a href="">Profile</a></li>
+                                <li class="settings"><a href="">Account Settings</a></li>
+                                <li class="logout"><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
+                            </ul>
+                        </div>
+
+                    </div><!-- User panel end -->
+
+                </div><!-- End header right -->
+
+            </div><!-- End header wrapper -->
+
+        </div><!-- End header -->
+
+    </div>
+
+</div>
+
+<!-- Header ends -->

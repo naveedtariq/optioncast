@@ -67,6 +67,14 @@ Rails.application.routes.draw do
   get 'about' => "static_pages#about"
   get 'contact' => "static_pages#contact"
 
+  get 'recommendations' =>  "dashboard#recommendations"
+  get 'charts' =>  "dashboard#charts"
+  get 'averages' =>  "dashboard#averages"
+  get 'rank' =>  "dashboard#rank"
+  get 'data' =>  "dashboard#data"
+
+
+
   #devise_for :users
   devise_for :users, controllers: { registrations: 'registrations', sessions: 'sessions', users:'users' }
 

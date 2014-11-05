@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
       if resource.is_a?(AdminUser)
         admin_root_path
       elsif resource.is_a?(User)
-        what_is_optioncast_path
+        recommendations_path
       else
         super
       end

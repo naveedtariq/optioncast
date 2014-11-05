@@ -1,9 +1,9 @@
 var ready;
 ready = function() {
     Main.init();
-    UISliders.init();
-    Charts.init();
-    FormWizard.init();
+    //UISliders.init();
+    //Charts.init();
+    //FormWizard.init();
 };
 
 $(document).ready(ready);
