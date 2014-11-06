@@ -4430,7 +4430,7 @@ a.badge:hover {
     background-color: #fff;
 }
 .message-list li.message {
-    background-image: url("../img/icons/mail.png");
+    background-image: url("/img/icons/mail.png");
 }
 .message-list li.user,
 .user-dropbox li.user {
@@ -4611,7 +4611,7 @@ a.badge:hover {
     width: 100%;
 }
 .leftmenu ul li a {
-    background: url(../img/sprites.png) no-repeat scroll 8px center;
+    background: url(/assets/img/sprites.png) no-repeat scroll 8px center;
     border-color: -moz-use-text-color #dddddd #dddddd;
     border: 1px solid #DDDDDD;
     border-width: 0 1px 1px;
