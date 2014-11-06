@@ -4430,7 +4430,7 @@ a.badge:hover {
     background-color: #fff;
 }
 .message-list li.message {
-    background-image: url("/img/icons/mail.png");
+    background-image: url("../img/icons/mail.png");
 }
 .message-list li.user,
 .user-dropbox li.user {
