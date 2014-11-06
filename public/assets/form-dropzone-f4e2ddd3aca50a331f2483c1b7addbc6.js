@@ -1,1 +1,0 @@
-var Dropzone=function(){var n=function(){$(".dropzone").dropzone({paramName:"file",maxFilesize:5,addRemoveLinks:!0})};return{init:function(){n()}}}();

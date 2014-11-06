@@ -81,8 +81,8 @@ development:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
-#production:
-#  <<: *default
-#  database: option_cast_production
-#  username: option_cast
-#  password: <%= ENV['OPTION_CAST_DATABASE_PASSWORD'] %>
+production:
+  <<: *default
+  database: option_cast_production
+  username: zlb
+  password: whoami

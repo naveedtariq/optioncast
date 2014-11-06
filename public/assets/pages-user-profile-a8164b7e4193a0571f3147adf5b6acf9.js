@@ -1,1 +1,0 @@
-var PagesUserProfile=function(){var e=function(){$(".pulsate").pulsate({color:"#C43C35",reach:20,speed:1e3,pause:0,glow:!0,repeat:3,onHover:!1})};return{init:function(){e()}}}();
