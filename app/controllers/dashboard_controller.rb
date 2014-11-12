@@ -46,7 +46,16 @@ protected
 
     @user = User.includes(:user_answers).find_by_id(current_user.id)
 
+
+
     @user_answers = {}
+
+    if @user.user_answers.length == 0
+      @rank = 'NA'
+      session[:user_rank] = @rank
+      return @rank
+    end
+
     @user.user_answers.each do |ans|
       @user_answers [ans.question_id] = ans.value
     end
