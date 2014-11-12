@@ -50,7 +50,7 @@ protected
 
     @user_answers = {}
 
-    if @user.user_answers.length == 0
+    if @user.user_answers.length == 0 
       @rank = 'NA'
       session[:user_rank] = @rank
       return @rank
@@ -59,6 +59,8 @@ protected
     @user.user_answers.each do |ans|
       @user_answers [ans.question_id] = ans.value
     end
+
+    puts @user.user_answers.inspect
 
     @date_of_birth_str = @user_answers[1]
     @current_date = Date.today 
