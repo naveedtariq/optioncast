@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController
 
-before_filter :stats, :require_login
+before_action :require_login, :stats
 
   def stats
     @stat_values = [19100,219100,get_user_rank,1099] 
