@@ -1,12 +1,12 @@
 ActiveAdmin.register Plan do
   menu :priority => 4
-  permit_params :name, :details, :goal_id
+  permit_params :name, :about, :description, :fine_print, :pros, :cons, :recommendation, :link, :goal_id
 
   index do
     selectable_column
     id_column
     column :name
-    column :details
+    column :about
     column :goal
     actions
   end
@@ -16,13 +16,18 @@ ActiveAdmin.register Plan do
   end
 
   filter :name
-  filter :details
   filter :goal
   
   form do |f|
     f.inputs "Plan Details" do
-      f.input :name
-      f.input :details
+      f.input :name  
+      f.input :about
+      f.input :description
+      f.input :fine_print
+      f.input :pros
+      f.input :cons
+      f.input :recommendation
+      f.input :link
       f.input :goal
     end
     f.actions

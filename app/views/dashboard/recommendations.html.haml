@@ -1,0 +1,52 @@
+.row-fluid
+  .span12
+    .row-fluid
+      .span9
+        - @recommendations.each_with_index do |r,index|
+          .row-fluid
+            .span12
+              %section.utopia-widget
+                .utopia-widget-title
+                  = image_tag("img/icons/paragraph_justify.png", class: "utopia-widget-icon")
+                  %span #{r.name} 
+                .utopia-widget-content{:style => "display: #{index < @collapse_after ? 'block' : 'none'};"}
+                  %h1 #{r.name}
+                  %h3 #{r.about}
+                  %hr
+
+                  %h3 Description
+                  %p #{r.description}
+
+                  -if !r.fine_print.blank?
+                    %h3 Fine Print       
+                    %ul
+                      -r.fine_print.each_line do |line|
+                        -if !line.blank?
+                          %li= line                                 
+
+                  -if !r.pros.blank?
+                    .alert.alert-success
+                      %h3.alert-heading Pros
+                      %ul
+                        -r.pros.each_line do |line|
+                          -if !line.blank?
+                            %li= line
+                  
+                  -if !r.cons.blank?
+                    .alert.alert-error
+                      %h3.alert-heading Cons
+                      %ul
+                        -r.cons.each_line do |line|
+                          -if !line.blank?
+                            %li= line
+
+                  -if !r.recommendation.blank?
+                    .alert.alert-info
+                      %h3.alert-heading Our Recommendation
+                      #{r.recommendation}      
+                  .utopia-table-action
+                    .btn-group
+                      %a{:href => "#{r.link}"}
+                        %button.btn.btn-success.span4{:href => "javascript:void(0);"} Learn More
+                 
+      / Mid panel

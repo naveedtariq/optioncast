@@ -8,7 +8,7 @@ class UsersController < ApplicationController
       @questions = Question.all
       @questions.count.times {@user.user_answers.build}
       @user.user_answers.zip(@questions).each do |user_answer,question|
-       user_answer.question = question
+        user_answer.question = question
       end
     end
   end

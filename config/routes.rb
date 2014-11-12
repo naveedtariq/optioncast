@@ -70,8 +70,9 @@ Rails.application.routes.draw do
   get 'recommendations' =>  "dashboard#recommendations"
   get 'charts' =>  "dashboard#charts"
   get 'averages' =>  "dashboard#averages"
-  get 'rank' =>  "dashboard#rank"
   get 'data' =>  "dashboard#data"
+  post '/dashboard/submit' => 'dashboard#submit'
+
 
 
 

@@ -1,0 +1,54 @@
+.row-fluid
+  .span10.body-container
+    %section#utopia-wizard-form.utopia-widget.utopia-form-box
+      .utopia-widget-title
+        = image_tag("img/icons/paragraph_justify.png", class: "utopia-widget-icon")
+        %span Questionaire Data
+      .row-fluid
+        .utopia-widget-content
+          .span12.utopia-form-freeSpace
+            .sample-form
+              %form#validation.form-horizontal{:action => "javascript:void(0)"}
+                %fieldset
+                  .control-group
+                    %label.control-label{:for => "input01"} Name*:
+                    .controls
+                      %input#input01.input-fluid{:class => "validate[required]", :type => "text", :value => ""}
+                  .control-group
+                    %label.control-label{:for => "inputError"} Email*:
+                    .controls
+                      %input#inputError.input-fluid{:class => "validate[required,custom[email]]", :type => "text", :value => "jon.com"}
+                        %br
+                          %span.help-inline Please correct the email
+                  .control-group
+                    %label.control-label{:for => "date"} Birthday*:
+                    .controls
+                      %input#date.input-fluid{:class => "validate[required,custom[date]]", :type => "text", :value => "2001-12-01"}
+                        %br/
+                        %span.help-inline Must be 2001-12-01
+                  
+                  .control-group
+                    %label.control-label{:for => "select02"} Country:
+                    .controls.sample-form-chosen
+                      %select#select02.chzn-select-deselect{"data-placeholder" => "Select your country", :style => "width:66%;", :tabindex => "7"}
+                        %option{:value => ""}
+                        %option{:value => "United States"} United States
+                        %option{:value => "United Kingdom"} United Kingdom
+                        %option{:value => "Afghanistan"} Afghanistan
+                        %option{:value => "Albania"} Albania
+                        %option{:value => "Algeria"} Algeria
+                        %option{:value => "Andorra"} Andorra
+                        %option{:value => "Angola"} Angola
+                        %option{:value => "Anguilla"} Anguilla
+                        %option{:value => "Antarctica"} Antarctica
+                        %option{:value => "Antigua and Barbuda"} Antigua and Barbuda
+                        %option{:value => "Argentina"} Argentina
+
+                  
+                  .control-group
+                    %label.control-label{:for => "agree"}
+                    #agree.controls
+                      .checkboxExtra.js-checkbox I agree with this term and condition
+                  .utopia-from-action
+                    %button.btn.btn-primary.span5{:type => "submit"} Save changes
+                    %button.btn.span5 Cancel

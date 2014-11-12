@@ -1,0 +1,150 @@
+.navbar-content
+  / start: SIDEBAR
+  / start: SIDEBAR
+  .main-navigation.navbar-collapse.collapse
+    / start: MAIN MENU TOGGLER BUTTON
+    .navigation-toggler
+      %i.clip-chevron-left
+      %i.clip-chevron-right
+    / start: MAIN NAVIGATION MENU
+    %ul.main-navigation-menu
+      %li.active.open
+        %a{:href => "search"}
+          %i.clip-home-3
+          %span.title OptionCast
+          %span.selected
+      %li
+        %a{:href => "javascript:void(0)"}
+          %i.clip-checkmark-circle
+          %span.title Option Stats
+          %i.icon-arrow
+          %span.selected
+        %ul.sub-menu
+          %li
+            %a{:href => "implied-volatility-change"}
+              %span.title Implied Volatility Change
+          %li
+            %a{:href => "straddle-change"}
+              %span.title Straddle Change
+          %li
+            %a{:href => "open-interest-change"}
+              %span.title Open Interest
+          %li
+            %a{:href => "option-volume-change"}
+              %span.title Option Volume
+          %li
+            %a{:href => "put-call-ratios"}
+              %span.title Put Call Ratios
+      %li
+        %a{:href => "javascript:void(0)"}
+          %i.fa.fa-dashboard
+          %span.title Option Sentiment
+          %i.icon-arrow
+          %span.selected
+        %ul.sub-menu
+          %li
+            %a{:href => "implied-volaility-sentiment"}
+              %span.title Implied Volatility
+          %li
+            %a{:href => "straddle-sentiment"}
+              %span.title Straddle Prices
+          %li
+            %a{:href => "implied-volatility-percentiles"}
+              %span.title IV Percentiles
+          %li
+            %a{:href => "straddle-percentiles"}
+              %span.title Straddle Percentiles
+          %li
+            %a{:href => "implied-volatility-average"}
+              %span.title IV Average
+          %li
+            %a{:href => "straddle-average"}
+              %span.title Straddle Average
+      %li
+        %a{:href => "javascript:void(0)"}
+          %i.clip-grid-6
+          %span.title Open Interest
+          %i.icon-arrow
+          %span.selected
+        %ul.sub-menu
+          %li
+            %a{:href => "open-interest-strike"}
+              %span.title Open Interest by Strike
+          %li
+            %a{:href => "open-interest-chart"}
+              %span.title Open Interest Chart
+      %li
+        %a{:href => "javascript:void(0)"}
+          %i.clip-stats
+          %span.title Option Charts
+          %i.icon-arrow
+          %span.selected
+        %ul.sub-menu
+          %li
+            %a{:href => "implied-volatility-chart"}
+              %span.title Volatility Chart
+          %li
+            %a{:href => "straddle-chart"}
+              %span.title Straddle Chart
+          %li
+            %a{:href => "option-montage"}
+              %span.title Option Montage
+      %li
+      %li
+        %a{:href => "javascript:void(0)"}
+          %i.fa.fa-bar-chart-o
+          %span.title Option Averages
+          %i.icon-arrow
+          %span.selected
+        %ul.sub-menu
+          %li
+            %a{:href => "straddle-averages"}
+              %span.title Straddle Avg Chart
+      %li
+      %li
+        %a{:href => "real-time-option-trades"}
+          %i.clip-transfer
+          %span.title Option Trades
+          %span.selected
+      %li
+        %a{:href => "earnings-dates"}
+          %i.clip-calendar-3
+          %span.title Earnings Dates
+          %span.selected
+      %li
+        %a{:href => "earnings-results"}
+          %i.fa.fa-check
+          %span.title Earnings Results
+          %span.selected
+      %li
+        %a{:href => "option-radar"}
+          %i.clip-radio-checked
+          %span.title Option Radar
+          %span.selected
+      %li
+        %a{:href => "faq"}
+          %i.clip-question
+          %span.title F.A.Q.
+          %span.selected
+      %li
+        %a{:href => "myaccount"}
+          %i.clip-user-2
+          %span.title My Account
+          %span.selected
+      %li
+        %a{:href => "www.optioncast.com/stock-options-blog"}
+          %i.clip-bubble-4
+          %span.title Blog
+          %span.selected
+      %li
+        %a{:href => "broker-reviews"}
+          %i.clip-bars
+          %span.title Broker Reviews
+          %span.selected
+      %li
+        %a{:href => "trading-deals"}
+          %i.fa.fa-dollar
+          %span.title Trading Deals
+          %span.selected
+    / end: MAIN NAVIGATION MENU
+  / end: SIDEBAR

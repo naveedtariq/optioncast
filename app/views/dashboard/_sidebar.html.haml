@@ -1,0 +1,25 @@
+.span2.sidebar-container
+  .sidebar
+    .navbar.sidebar-toggle
+      .container
+        %a.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+    .nav-collapse.leftmenu
+      %ul
+        %li
+          %a.dashboard.smronju{:href => "javascript:void(0)", :title => "Dashboard"}
+            %span Dashboard
+        %li{ class: get_sidebar_current_class("dashboard_recommendations")}
+          %a.list{:href => "recommendations.html", :title => "Recommendations"}
+            %span Recommendations
+        %li{ class: get_sidebar_current_class("dashboard_charts")}
+          %a.charts{:href => "charts.html", :title => "Charts"}
+            %span Charts
+        %li{ class: get_sidebar_current_class("dashboard_averages")}
+          %a.averages{:href => "averages.html", :title => "Averages"}
+            %span Averages
+        %li{ class: get_sidebar_current_class("dashboard_data")}
+          %a.form{:href => "data.html", :title => "Data"}
+            %span Data

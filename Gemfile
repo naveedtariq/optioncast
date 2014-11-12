@@ -41,6 +41,8 @@ gem 'bootstrap-sass'
 
 gem 'haml', '~> 4.0.5'
 
+gem 'haml-rails'
+
 gem 'seed_dump'
 
 group :development, :test do

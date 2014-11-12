@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140930150503) do
+ActiveRecord::Schema.define(version: 20141112111421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,10 +101,16 @@ ActiveRecord::Schema.define(version: 20140930150503) do
 
   create_table "plans", force: true do |t|
     t.string   "name"
-    t.text     "details"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "goal_id"
+    t.string   "about"
+    t.text     "description"
+    t.text     "fine_print"
+    t.text     "pros"
+    t.text     "cons"
+    t.text     "recommendation"
+    t.string   "link"
   end
 
   add_index "plans", ["goal_id"], name: "index_plans_on_goal_id", using: :btree
@@ -119,6 +125,18 @@ ActiveRecord::Schema.define(version: 20140930150503) do
   end
 
   add_index "questions", ["goal_id"], name: "index_questions_on_goal_id", using: :btree
+
+  create_table "ranking_data", force: true do |t|
+    t.integer "lower_age"
+    t.integer "upper_age"
+    t.integer "median1"
+    t.integer "median10"
+    t.integer "median30"
+    t.integer "median50"
+    t.integer "median70"
+    t.integer "median90"
+    t.integer "median100"
+  end
 
   create_table "stocks", force: true do |t|
     t.string   "ticker"
