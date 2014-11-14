@@ -39,13 +39,14 @@ protected
   end
 
   def get_user_rank()
-    if session[:user_rank]
-      puts "Rank skipped"
-      return session[:user_rank]
-    end
+    #if session[:user_rank]
+    #  puts "Rank skipped"
+    #  return session[:user_rank]
+    #end
 
     @user = User.includes(:user_answers).find_by_id(current_user.id)
 
+    puts @user.user_answers.inspect
 
 
     @user_answers = {}
@@ -60,7 +61,6 @@ protected
       @user_answers [ans.question_id] = ans.value
     end
 
-    puts @user.user_answers.inspect
 
     @date_of_birth_str = @user_answers[1]
     @current_date = Date.today 
