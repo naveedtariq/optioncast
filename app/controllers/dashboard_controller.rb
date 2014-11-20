@@ -54,7 +54,7 @@ protected
   def require_login
     unless current_user
       session[:previous_url] = request.fullpath 
-      redirect_to recommendations_path
+      redirect_to new_user_session_path
     end
   end
 
