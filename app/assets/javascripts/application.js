@@ -25,7 +25,6 @@
 //= require plugins/jquery-cookie/jquery.cookie
 //= require plugins/bootstrap-colorpalette/js/bootstrap-colorpalette
 //= require main
-
 //=require plugins/flot/jquery.flot
 //=require plugins/flot/jquery.flot.pie
 //=require plugins/flot/jquery.flot.resize

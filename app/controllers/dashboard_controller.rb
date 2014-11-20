@@ -21,33 +21,50 @@ before_action :require_login, :stats
   def averages
   end
 
+  def render_data
+    @user = User.includes(user_answers: :question).order("questions.order").find_by_id(current_user.id)
+  end
+
   def data
-    @user = User.new()
-    @questions = Question.all
-    @questions.count.times {@user.user_answers.build}
-    @user.user_answers.zip(@questions).each do |user_answer,question|
-      user_answer.question = question
+    @readonly = true
+    render_data
+  end
+
+  def submit
+    if params[:edit]
+      @readonly = false
+      render_data
+      render "data"
+    else
+      @user = current_user
+      @user.update_attributes(params.require(:user).permit(:goal_id, :email, :password, :password_confirmation, user_answers_attributes: [:id, :question_id, :answer_id, :value]))
+      
+      if @user.save
+        @readonly =true
+        if session[:user_rank]
+          session.delete(:user_rank)
+        end
+      end
+      redirect_to data_path
     end
+    
   end
 
 protected
   def require_login
     unless current_user
       session[:previous_url] = request.fullpath 
-      redirect_to new_user_session_path
+      redirect_to recommendations_path
     end
   end
 
   def get_user_rank()
-    #if session[:user_rank]
-    #  puts "Rank skipped"
-    #  return session[:user_rank]
-    #end
+    if session[:user_rank]
+      puts "Rank skipped"
+      return session[:user_rank]
+    end
 
     @user = User.includes(:user_answers).find_by_id(current_user.id)
-
-    puts @user.user_answers.inspect
-
 
     @user_answers = {}
 

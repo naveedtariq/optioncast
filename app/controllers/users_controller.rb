@@ -15,7 +15,6 @@ class UsersController < ApplicationController
 
   def submit
     if user_signed_in?
-      puts params.inspect
       @user = current_user
       @user.update_attributes(params.require(:user).permit(:goal_id, :email, :password, :password_confirmation, user_answers_attributes: [:question_id, :answer_id, :value]))
       @user.save
