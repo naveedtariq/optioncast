@@ -23,6 +23,13 @@ before_action :require_login, :stats
 
   def render_data
     @user = User.includes(user_answers: :question).order("questions.order").find_by_id(current_user.id)
+    if @user.user_answers.length == 0
+      @questions = Question.all
+      @questions.count.times {@user.user_answers.build}
+      @user.user_answers.zip(@questions).each do |user_answer,question|
+        user_answer.question = question
+      end
+    end
   end
 
   def data
