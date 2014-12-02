@@ -83,7 +83,8 @@ Rails.application.routes.draw do
     get '/users/sign_out' => 'devise/sessions#destroy'  
     get '/users/questionnaire' => 'users#questionnaire'
     post '/users/submit' => 'users#submit'
-    post '/users' => 'registrations#create'
+    get '/users/guest' => 'registrations#guest_user'
+
   end
 
   #devise_scope :user do

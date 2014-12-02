@@ -1,0 +1,58 @@
+<div class="main-content">
+
+  <script type="text/javascript">
+  
+      $(window).load(function(){
+          $('#question_modal').modal('show');
+          $('#signup_button').on('click',function(){
+            window.location.href = '/free_sign_up';  
+          });
+          $('#skip_button').on('click',function(){
+            window.location.href = '/recommedations';  
+          });
+      });
+
+  </script>
+
+
+  <div class="modal fade" id="question_modal" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="question" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header" style="color">
+          <h2 class="modal-title" id="question">Tell us about your financial life</h3>
+        </div>
+
+        <div style="overflow:auto; height:550px;">
+          <%= form_for @user, :url => { action: "submit_questionnaire", method: "post" } do |f| %>
+            <h4 class="modal-title" style="width: 97%;margin: 3%">Please select a goal</h4>
+            <%= f.select :goal_id, options_for_select( Goal.all.map { |a| [a.name, a.id] }, f.object.goal_id), {required:true}, {class: "form-control", style:"width: 60%;margin: 3%"} %>
+            <%= f.fields_for :user_answers do |ff| %>
+              <%= ff.hidden_field :question_id%>
+              <div class="form-group">
+                <h4 class="modal-title" style="width: 97%;margin: 3%" id="question" ><%= ff.object.question.text %></h4>
+                <% if ff.object.question.kind == 'Value'%>
+                  <%= ff.text_field :value, required:true, type:"number", class: "form-control", style:"width: 60%;margin: 3%"%>
+                <% elsif ff.object.question.kind == 'Date'%>
+                  <%= ff.date_field :value, required:true, type:"date", class: "form-control", style:"width: 60%;margin: 3%", value: ff.object.value%>
+                <% elsif ff.object.question.kind == 'Dropdown'%>
+                  <%= ff.select :answer_id, options_for_select( Answer.where(question: ff.object.question.id).map { |a| [a.text, a.id] },ff.object.answer_id), {required:true}, {class: "form-control", style:"width: 60%;margin: 3%"} %>
+                <% end %>
+
+              </div>
+            <% end %>
+            </div>
+            <div class="actions">
+            </div>
+            <div class="modal-footer">
+              <center>
+                <%= f.submit "Submit", class: "btn btn-block btn-success"%>
+              </center>
+              <p><a href="/users/sign_up2">Skip</a> to go directly to Sign Up<p>
+          <% end %>
+   
+     </div>
+    </div>
+  </div>
+
+</div>

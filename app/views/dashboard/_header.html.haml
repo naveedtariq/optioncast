@@ -1,24 +1,24 @@
 / Header starts
+:css
+  .navbar-brand img {
+    margin-left: 5px;
+    margin-top: 2px;
+    width: 180px;
+  }
 .row-fluid
   .span12
     .header-top
       .header-wrapper
-        = link_to 'OPTIONCAST', root_url, style:"font-size:25px; font-family: 'Raleway',sans-serif; color: #98CD33; line-height: 2; margin-left: 9px;"
+        = link_to image_tag("FinancialRankLogo.png"), root_url, {:class => 'navbar-brand'}
         .header-right
           .header-divider &nbsp;
-          .header-divider
-            = link_to raw('<p>About</p>'), "/about"
-          .header-divider
-            = link_to raw('<p>Contact</p>'), "/contact"
           .user-panel.header-divider
             .user-info
               = link_to raw("#{image_tag("avatar-1-small.jpg", class: "circle-img", alt: "")}#{'<span class="User">'} #{current_user.email} #{'</span>'}"), "#"
             .user-dropbox
               %ul
                 %li.user
-                  %a{:href => ""} Profile
-                %li.settings
-                  %a{:href => ""} Account Settings
+                  %a{:href => "/recommendations"} Profile
                 %li.logout= link_to "Log Out", destroy_user_session_path, :method => :delete
           / User panel end
         / End header right

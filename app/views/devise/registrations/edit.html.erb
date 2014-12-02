@@ -1,32 +1,60 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="main-login col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+  <div class="logo"><a href="<%=root_url%>">FinancialRank</a></div>
+  <!-- start: LOGIN BOX -->
+  <div class="box-login">
+    <h3>Sign Up</h3>
+    <div class="errorHandler alert alert-danger no-display"> <%= render '/shared/error_messages' %>   </div>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
+      <fieldset>
+        <div class="form-group">
+              <span class="input-icon input-icon-right">
+                <%= f.email_field :email, required:true, autofocus: true, class:"form-control", value:nil, placeholder:"Email" %>
+                <i class="fa fa-cog"></i> </span>
+          <!-- To mark the incorrectly filled input, you must add the class "error" to the input -->
+          <!-- example: <input type="text" class="login error" name="login" value="Username" /> -->
+        </div>
+      </fieldset>
+      <fieldset>
+        <div class="form-group">
+              <span class="input-icon input-icon-right">
+                <%= f.password_field :password, required:true, autocomplete: "off", class:"form-control password", placeholder:"Password" %>
+                <i class="fa fa-lock"></i>
+                 </span>
+        </div>
+      </fieldset>
+      <fieldset>
+        <div class="form-group ">
+              <span class="input-icon input-icon-right">
+                <%= f.password_field :password_confirmation, required:true, autocomplete: "off", class:"form-control password_confirmation", placeholder:"Password confirmation" %>
+                <i class="fa fa-lock"></i>
+                 </span>
+        </div>
+      </fieldset>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
-  
-  <div><%= f.label :username %><br />
-  <%= f.text_field :username, autofocus: true %></div>
+      <div class="form-actions">
+        <div>
+          <%= f.submit"Sign Up", class:"btn btn-bricky", style:"width: 200px"%>
+        </div>
+        <div>
+          <span align=right>
+            <p><a href="/users/guest">Skip</a> Sign Up and use Guest account<p>
+          </span>
+        </div>
+      </div>
+    <% end %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+  </div>
+  <!-- end: LOGIN BOX -->
+  <!-- start: FORGOT BOX -->
 
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
+  <!-- start: COPYRIGHT -->
+  <div class="copyright">         2014 &copy; FinancialRank by Option-Cast Theme. </div>
+  <!-- end: COPYRIGHT -->
+</div>
 
-  <div><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
 
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %></div>
+<!-- end: BODY -->
 
-  <div><%= f.submit "Update" %></div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+ 

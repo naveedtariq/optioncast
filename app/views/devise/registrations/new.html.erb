@@ -1,5 +1,5 @@
 <div class="main-login col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
-  <div class="logo"><a href="<%=root_url%>">OptionCast</a></div>
+  <div class="logo"><a href="<%=root_url%>">FinancialRank</a></div>
   <!-- start: LOGIN BOX -->
   <div class="box-login">
     <h3>Sign Up</h3>
@@ -9,7 +9,7 @@
       <fieldset>
         <div class="form-group">
 							<span class="input-icon input-icon-right">
-								<%= f.email_field :email, autofocus: true, class:"form-control", placeholder:"email" %>
+								<%= f.email_field :email, required:true, autofocus: true, class:"form-control", placeholder:"email" %>
                 <i class="fa fa-cog"></i> </span>
           <!-- To mark the incorrectly filled input, you must add the class "error" to the input -->
           <!-- example: <input type="text" class="login error" name="login" value="Username" /> -->
@@ -18,7 +18,7 @@
       <fieldset>
         <div class="form-group">
 							<span class="input-icon input-icon-right">
-                <%= f.password_field :password, autocomplete: "off", class:"form-control password", placeholder:"Password" %>
+                <%= f.password_field :password, required:true, autocomplete: "off", class:"form-control password", placeholder:"Password" %>
                 <i class="fa fa-lock"></i>
 								 </span>
         </div>
@@ -26,13 +26,20 @@
       <fieldset>
         <div class="form-group ">
 							<span class="input-icon input-icon-right">
-                <%= f.password_field :password_confirmation, autocomplete: "off", class:"form-control password_confirmation", placeholder:"Password confirmation" %>
+                <%= f.password_field :password_confirmation, required:true, autocomplete: "off", class:"form-control password_confirmation", placeholder:"Password confirmation" %>
                 <i class="fa fa-lock"></i>
 								 </span>
         </div>
       </fieldset>
       <div class="form-actions">
-        <%= f.submit"Sign Up", class:"btn btn-bricky pull-left" %>
+        <div>
+          <%= f.submit"Sign Up", class:"btn btn-bricky", style:"width: 200px"%>
+        </div>
+        <div>
+          <span align=right>
+            <p><a href="/users/guest">Skip</a> Sign Up and use Guest account<p>
+          </span>
+        </div>
       </div>
     <% end %>
 
@@ -42,9 +49,11 @@
   <!-- start: FORGOT BOX -->
 
   <!-- start: COPYRIGHT -->
-  <div class="copyright">         2014 &copy; optioncast by Option-Cast Theme. </div>
+  <div class="copyright">         2014 &copy; FinancialRank by Option-Cast Theme. </div>
   <!-- end: COPYRIGHT -->
 </div>
 
 
 <!-- end: BODY -->
+
+ 
