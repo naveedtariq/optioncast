@@ -36,6 +36,7 @@ class RegistrationsController < Devise::RegistrationsController
       if current_user.is_guest
         super
         return
+      end
     end
     redirect_to recommendations_path
     return
