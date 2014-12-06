@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   get 'welcome/index'
 
-  match "/blog" => redirect("/blog/")
+  match "/blog" => redirect("/blog/"), via: :all
 
   get 'about' => "static_pages#about"
   get 'contact' => "static_pages#contact"
