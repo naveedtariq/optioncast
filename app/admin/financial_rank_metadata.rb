@@ -1,7 +1,7 @@
-ActiveAdmin.register RankingData do
+ActiveAdmin.register FinancialRankMetadata do
 
   config.filters = false
-  menu :priority => 8, :label => "Median Net Worths"
+  menu :priority => 8, :label => "Financial Rank Metadata"
   permit_params :lower_age, :upper_age, :median1, :median10, :median30, :median50, :median70, :median90, :median100
   config.sort_order = "lower_age_asc"
 
@@ -21,11 +21,11 @@ ActiveAdmin.register RankingData do
   end
 
   action_item :only => :show do
-    link_to('New Age Slot', new_admin_ranking_datum_path)
+    link_to('New Age Slot', new_admin_financial_rank_metadatum_path)
   end
 
   form do |f|
-    f.inputs "Median Net Worths" do
+    f.inputs "Financial Rank Metadata" do
       f.input :lower_age
       f.input :upper_age
       f.input :median1

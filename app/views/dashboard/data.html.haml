@@ -21,9 +21,9 @@
                         %label#question.control-label= ff.object.question.text
                         .controls
                           - if ff.object.question.kind == 'Value'
-                            = ff.text_field :value, required:true, readonly: @readonly, type:"number", class: "input-fluid"
+                            = ff.text_field :value, required:true, readonly: @readonly, type:"number", min: "0", class: "input-fluid"
                           - elsif ff.object.question.kind == 'Date'
-                            = ff.date_field :value, required:true, readonly: @readonly, type:"date", class: "input-fluid", value: ff.object.value
+                            = ff.date_field :value, required:true, readonly: @readonly, type:"date", max: Date.today, class: "input-fluid", value: ff.object.value
                           - elsif ff.object.question.kind == 'Dropdown'
                             = ff.select :answer_id, options_for_select( Answer.where(question: ff.object.question.id).map { |a| [a.text, a.id] },ff.object.answer_id), {required:true}, {class: "input-fluid", disabled: @readonly}
                     .utopia-from-action

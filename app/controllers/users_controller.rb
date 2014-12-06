@@ -41,6 +41,16 @@ class UsersController < ApplicationController
       session[:user] = params[:user]
     end
 
+    if session[:retirement_rank]
+      session.delete(:retirement_rank)
+    end
+    if session[:income_rank]
+      session.delete(:income_rank)
+    end
+    if session[:financial_rank]
+      session.delete(:financial_rank)
+    end
+
     if user_signed_in?
       if current_user.is_guest
         redirect_to edit_user_registration_path

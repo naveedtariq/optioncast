@@ -1,10 +1,18 @@
-Plan.create!([
-  {name: "Dirtect consolidation loan", goal_id: nil, about: "LOWER MONTHLY PAYMENTS + CONSOLIDATES LOANS", description: "A Direct Consolidation Loan is a federal program that combines multiple federal student loans into one single federal student loan.", fine_print: "Your new interest rate will be a weighted average of your current loan interest rates.\r\nA new loan servicer might be issued to your account.\r\nThe application process can take 4-8 weeks until processed", pros: "Consolidate multiple loans into one loan for easier organization and repayment.\r\nOption to lower monthly payments by choosing an alternative repayment plan, such as Income Based Repayment.\r\nRehabilitate loans that are in default.", cons: "Might pay more interest over repayment, if you select an alternative repayment plan.", recommendation: "If you have multiple federal loans, a Direct Consolidation Loan can make managing your loans easier. Also, if you are experiencing difficulty paying your student loans, this option can be a great tool to help you avoid defaulting on your student loans, until your financial situation improves. While alternative repayment plans can be a great short term solution, keep in mind the additional interest you will accrue over repayment.", link: "https://loanconsolidation.ed.gov/AppEntry/apply-online/appindex.jsp"},
-  {name: "Private Loan Refinancing/Consolidation", goal_id: nil, about: "LOWER MONTHLY PAYMENTS + SAVE MONEY", description: "Refinancing your student loans is the process of finding a bank to payoff your existing student loans(s) and offer you a new student loan with modifed terms, such as a lower interest rate, consolidation of multiple loans, and changing the repayment term.\r\n", fine_print: "Typical credit score requirements are 620+.\r\nMust be employed.\r\nIf you defaulted on a loan in the past, you might not be eligible.", pros: "Can save you significant amounts of interest accrued during repayment.\r\nCan lower monthly payments.", cons: "Refinancing Federal loans eliminates your eligibility for alternative repayment programs, such as IBR and Student Loan Forgiveness.", recommendation: "Refinancing is typically a great option for student loans, especially if your credit score or income situation has improved. Refinancing can help you save money, lower your monthly payments, and potentially even release a co-signer from existing loans.", link: "https://www.google.com"},
-  {name: "ACH Direct Payments", goal_id: nil, about: "LOWER MONTHLY PAYMENTS + SAVE MONEY", description: "ACH or Electronic Debit Payments is a feature that automatically deducts your monthly student loan payments from an existing bank account.\r\n", fine_print: "If you don't have enough funds available when the transaction takes place, you might accrue penalties for insufficient funds.\r\n", pros: "Receive a .25% interest rate reduction.\r\nStudent Loan Payments are on auto-pilot, which can prevent missing a payment.", cons: "", recommendation: "If you have the funds in your bank account, we recommend you should absolutely sign up! I mean, who doesn't like saving money?", link: "https://www.google.com"},
-  {name: "Standard Repayment Plan", goal_id: nil, about: "LOWER MONTHLY PAYMENTS", description: "As one of the federal Income Driven Repayment Plans, Income Contingent Repayment (ICR) limits monthly payments based on your adjusted gross income (AGI), family size, and total Direct Loan debt.\r\nPayments are the lesser of: 20% of your monthly discretionary income (AGI – poverty level ÷ 12), or your monthly payment on a 12-year plan times a percentage factor that varies with your income.", fine_print: "Term: 25 years\r\nEligibility: Most Direct Loans", pros: "Can lower monthly payments to ease financial burden.", cons: "\r\n\r\nWill accrue more interest over the life of the loan.\r\n\r\n\r\nWill take longer to pay off debt.\r\n\r\n", recommendation: "If you are struggling to pay monthly student loan bills, an Income Driven Repayment plan can be a wise short term solution until your employment or income situation improves.\r\n\r\nAs a long term solution, ICR can lead to significant amount of interest being accrued and is not recommended. As a worst case scenario, heavily indebted borrowers can have the remaining student loan balance forgiven after 25 years under the ICR program.", link: "https://www.google.com"}
+IncomeRankMetadata.create!([
+  {lower_income: 0, upper_income: 9999, percentage: "7.5", percentage_below: "0.0"},
+  {lower_income: 10000, upper_income: 14999, percentage: "5.3", percentage_below: "7.5"},
+  {lower_income: 15000, upper_income: 24999, percentage: "10.7", percentage_below: "12.8"},
+  {lower_income: 25000, upper_income: 34999, percentage: "10.2", percentage_below: "23.5"},
+  {lower_income: 35000, upper_income: 49999, percentage: "13.5", percentage_below: "33.7"},
+  {lower_income: 75000, upper_income: 99999, percentage: "11.8", percentage_below: "65.0"},
+  {lower_income: 100000, upper_income: 149999, percentage: "12.6", percentage_below: "76.8"},
+  {lower_income: 150000, upper_income: 199999, percentage: "4.8", percentage_below: "89.4"},
+  {lower_income: 200000, upper_income: 382999, percentage: "4.9", percentage_below: "94.2"},
+  {lower_income: 383000, upper_income: nil, percentage: "0.9", percentage_below: "99.1"},
+  {lower_income: 50000, upper_income: 74999, percentage: "17.8", percentage_below: "47.2"}
 ])
-RankingData.create!([
+
+FinancialRankMetadata.create!([
   {lower_age: 35, upper_age: 44, median1: -20000, median10: -14700, median30: 4058, median50: 35000, median70: 128430, median90: 448824, median100: 3800000},
   {lower_age: 45, upper_age: 54, median1: -10000, median10: -5991, median30: 12175, median50: 84542, median70: 228708, median90: 654229, median100: 7700000},
   {lower_age: 55, upper_age: 64, median1: -5000, median10: 0, median30: 39057, median50: 144200, median70: 333750, median90: 889867, median100: 10600000},
@@ -13,16 +21,16 @@ RankingData.create!([
   {lower_age: 75, upper_age: nil, median1: -1000, median10: 972, median30: 70584, median50: 155714, median70: 302916, median90: 770397, median100: 9000000},
   {lower_age: 0, upper_age: 34, median1: -30000, median10: -22646, median30: 0, median50: 6682, median70: 33477, median90: 153616, median100: 1000000}
 ])
-Goal.create!([
-  {name: "Investment Management", order: 1},
-  {name: "Create A Budget", order: 2},
-  {name: "Invest For Retirement", order: 3},
-  {name: "Manage Debt", order: 4}
+
+RetirementRankMetadata.create!([
+  {lower_age: 22, upper_age: 29, savings_multiplier: "0.0"},
+  {lower_age: 35, upper_age: 39, savings_multiplier: "1.5"},
+  {lower_age: 40, upper_age: 44, savings_multiplier: "3.0"},
+  {lower_age: 45, upper_age: 49, savings_multiplier: "4.75"},
+  {lower_age: 50, upper_age: 54, savings_multiplier: "6.25"},
+  {lower_age: 55, upper_age: 59, savings_multiplier: "7.75"},
+  {lower_age: 60, upper_age: 64, savings_multiplier: "9.5"},
+  {lower_age: 65, upper_age: 67, savings_multiplier: "11.0"},
+  {lower_age: 30, upper_age: 34, savings_multiplier: "0.75"}
 ])
-Question.create!([
-  {text: "When is your birthday?", order: 1, goal_id: nil, kind: "Date"},
-  {text: "What is your current annual income?", order: 2, goal_id: nil, kind: "Value"},
-  {text: "What is your retirement account balance (401k, IRAs)?", order: 3, goal_id: nil, kind: "Value"},
-  {text: "What is your savings (excluding retirement accounts)?", order: 4, goal_id: nil, kind: "Value"},
-  {text: "What is your total debt outstanding (excluding mortgage)?", order: 5, goal_id: nil, kind: "Value"}
-])
+

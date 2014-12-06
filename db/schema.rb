@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141125140908) do
+ActiveRecord::Schema.define(version: 20141205222150) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,11 +60,30 @@ ActiveRecord::Schema.define(version: 20141125140908) do
 
   add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
 
+  create_table "financial_rank_metadata", force: true do |t|
+    t.integer "lower_age"
+    t.integer "upper_age"
+    t.integer "median1"
+    t.integer "median10"
+    t.integer "median30"
+    t.integer "median50"
+    t.integer "median70"
+    t.integer "median90"
+    t.integer "median100"
+  end
+
   create_table "goals", force: true do |t|
     t.string   "name"
     t.integer  "order"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "income_rank_metadata", force: true do |t|
+    t.integer "lower_income"
+    t.integer "upper_income"
+    t.decimal "percentage"
+    t.decimal "percentage_below"
   end
 
   create_table "options", force: true do |t|
@@ -126,16 +145,10 @@ ActiveRecord::Schema.define(version: 20141125140908) do
 
   add_index "questions", ["goal_id"], name: "index_questions_on_goal_id", using: :btree
 
-  create_table "ranking_data", force: true do |t|
+  create_table "retirement_rank_metadata", force: true do |t|
     t.integer "lower_age"
     t.integer "upper_age"
-    t.integer "median1"
-    t.integer "median10"
-    t.integer "median30"
-    t.integer "median50"
-    t.integer "median70"
-    t.integer "median90"
-    t.integer "median100"
+    t.decimal "savings_multiplier"
   end
 
   create_table "stocks", force: true do |t|
