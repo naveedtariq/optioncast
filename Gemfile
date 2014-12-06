@@ -45,6 +45,8 @@ gem 'haml-rails'
 
 gem 'seed_dump'
 
+gem "rack-reverse-proxy", :require => "rack/reverse_proxy"  
+
 group :development, :test do
     gem 'rspec-rails', '~> 2.14.2'
     gem 'annotate', '~> 2.4.1.beta'  

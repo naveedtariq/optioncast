@@ -2,3 +2,9 @@
 
 require ::File.expand_path('../config/environment',  __FILE__)
 run Rails.application
+
+use Rack::ReverseProxy do  
+  reverse_proxy(/^\/blog(\/.*)$/,
+    'http://afternoon-mountain-1180.herokuapp.com$1',
+    opts = {:preserve_host => true})
+end  

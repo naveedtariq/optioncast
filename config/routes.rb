@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   get 'welcome/index'
 
+  match "/blog" => redirect("/blog/")
+
   get 'about' => "static_pages#about"
   get 'contact' => "static_pages#contact"
 
