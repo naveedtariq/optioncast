@@ -6,5 +6,5 @@ run Rails.application
 use Rack::ReverseProxy do  
   reverse_proxy(/^\/blog(\/.*)$/,
     'http://shrouded-hollows-2501.herokuapp.com$1',
-    opts = {:preserve_host => true})
+    opts = {:preserve_host => false})
 end  
