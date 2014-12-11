@@ -10,7 +10,7 @@
       = link_to image_tag("FinancialRankLogo2.png"), root_url, {:class => 'navbar-brand'}
     .navbar-tools
       %ul.nav.navbar-right
-        %li= link_to raw('<p>Blog</p>'), "http://" + request.host + "/blog/"
+        %li= link_to raw('<p>Blog</p>'), "/blog/"
         - unless user_signed_in?
           %li= link_to raw('<p>Login</p>'), new_user_session_path
         - else
