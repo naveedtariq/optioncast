@@ -1,5 +1,5 @@
 ActiveAdmin.register UserAnswer do
-  menu :priority => 11
+  menu :priority => 30
 
   index do
     selectable_column

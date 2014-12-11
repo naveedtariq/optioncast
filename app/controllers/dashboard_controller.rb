@@ -13,6 +13,12 @@ before_action :require_login, :stats
     @collapse_after = 1 
   end
 
+  def how_to
+  
+    @help_tips = HelpTips.all
+    
+  end
+
   def charts
   end
 

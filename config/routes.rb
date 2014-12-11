@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   get 'charts' =>  "dashboard#charts"
   get 'averages' =>  "dashboard#averages"
   get 'data' =>  "dashboard#data"
+  get 'how_to' =>  "dashboard#how_to"
+
   patch '/dashboard/submit' => 'dashboard#submit'
 
 
