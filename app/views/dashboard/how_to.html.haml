@@ -1,0 +1,12 @@
+.row-fluid
+  .span12
+    .row-fluid
+      .span9
+        %section.utopia-widget
+          .utopia-widget-title
+            = image_tag("img/icons/paragraph_justify.png", class: "utopia-widget-icon")
+            %span How does it work?
+          .utopia-widget-content
+            - @help_tips.each do |tip|
+              %h1 #{tip.title}
+              %p #{tip.description}
