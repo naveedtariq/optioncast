@@ -19,7 +19,7 @@
         = link_to image_tag("FinancialRankLogo2.png"), root_url, {:class => 'navbar-brand'}
         .header-right
           .header-divider &nbsp;
-          %a.header-divider{:href => "/blog/"} Blog
+          %a.header-divider{:href => "http://" + request.host + "/blog/"} Blog
           .user-panel.header-divider
             .user-info
               = link_to raw("#{image_tag("avatar-1-small.jpg", class: "circle-img", alt: "")}#{'<span class="User">'} #{current_user.email} #{'</span>'}"), "#"
