@@ -1,15 +1,31 @@
+%SCRIPT{:LANGUAGE => "JavaScript"}
+  function switchDisplay(index) {
+  var x = document.getElementById("top"+index);
+  var y = document.getElementById("bottom"+index);
+  if(x.style.display!="none")
+  { 
+  y.style.display="block";
+  }
+  else
+  {
+  y.style.display="none";
+  }
+  }
+  elseif
+
+
 .row-fluid
   .span12
     .row-fluid
-      .span9
+      .span10
         - @recommendations.each_with_index do |r,index|
           .row-fluid
             .span12
               %section.utopia-widget
-                .utopia-widget-title
+                .utopia-widget-title{ :onClick => "switchDisplay('#{index}')" }
                   = image_tag("img/icons/paragraph_justify.png", class: "utopia-widget-icon")
                   %span #{r.name} 
-                .utopia-widget-content{:style => "display: #{index < @collapse_after ? 'block' : 'none'};"}
+                .utopia-widget-content{:id => "top#{index}", :style => "display: #{index < @collapse_after ? 'block' : 'none'};"}
                   %h1 #{r.name}
                   %h3 #{r.about}
                   %hr
@@ -48,4 +64,7 @@
                     .btn-group
                       %a{:href => "#{r.link}"}
                         %button.btn.btn-success.span4{:href => "javascript:void(0);"} Learn More
-                 
+                .utopia-widget-content{:id => "bottom#{index}", :style => "display: #{index >= @collapse_after ? 'block' : 'none'};"}
+                  %h3 Description
+                  %p #{r.description}
+               
