@@ -31,6 +31,12 @@ class UsersController < ApplicationController
   end
 
   def submit
+    params["user"]["user_answers_attributes"].each do |index,ans|
+      if ans["kind"] == "Value"
+        ans["value"] = ans["value"].to_s.gsub(/[$,]/,'').to_f
+      end
+    end
+
     if user_signed_in?
       @user = current_user
       @user.update_attributes(params.require(:user).permit(:goal_id, user_answers_attributes: [:question_id, :answer_id, :value]))

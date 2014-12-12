@@ -1,5 +1,5 @@
 class DashboardController < ApplicationController
-
+include ActionView::Helpers::NumberHelper
 before_action :require_login, :stats
 
   def stats
@@ -27,6 +27,11 @@ before_action :require_login, :stats
 
   def render_data
     @user = User.includes(user_answers: :question).order("questions.order").find_by_id(current_user.id)
+    @user.user_answers.each do |ans|
+      if ans.question.kind == 'Value'
+        ans.value = number_to_currency(ans.value.to_f)
+      end
+    end
     if @user.user_answers.length == 0
       @questions = Question.all
       @questions.count.times {@user.user_answers.build}
@@ -48,21 +53,28 @@ before_action :require_login, :stats
       render "data"
     else
       @user = current_user
+      
+      params["user"]["user_answers_attributes"].each do |index,ans|
+        if ans["kind"] == "Value"
+          ans["value"] = ans["value"].to_s.gsub(/[$,]/,'').to_f
+        end
+      end
+      
       @user.update_attributes(params.require(:user).permit(:goal_id, :email, :password, :password_confirmation, user_answers_attributes: [:id, :question_id, :answer_id, :value]))
       
-    if @user.save
-      @readonly =true
+      if @user.save
+        @readonly =true
 
-      if session[:retirement_rank]
-        session.delete(:retirement_rank)
+        if session[:retirement_rank]
+          session.delete(:retirement_rank)
+        end
+        if session[:income_rank]
+          session.delete(:income_rank)
+        end
+        if session[:financial_rank]
+          session.delete(:financial_rank)
+        end
       end
-      if session[:income_rank]
-        session.delete(:income_rank)
-      end
-      if session[:financial_rank]
-        session.delete(:financial_rank)
-      end
-    end
     
       redirect_to data_path
     end

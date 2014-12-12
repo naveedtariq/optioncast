@@ -1,3 +1,20 @@
+%SCRIPT{:LANGUAGE => "JavaScript"}
+  function formatCurrency(num) {
+  num = num.toString().replace(/\$|\,/g,'');
+  if(isNaN(num))
+  num = "0";
+  sign = (num == (num = Math.abs(num)));
+  num = Math.floor(num*100+0.50000000001);
+  cents = num%100;
+  num = Math.floor(num/100).toString();
+  if(cents<10)
+  cents = "0" + cents;
+  for (var i = 0; i < Math.floor((num.length-(1+i))/3); i++)
+  num = num.substring(0,num.length-(4*i+3))+','+
+  num.substring(num.length-(4*i+3));
+  return (((sign)?'':'-') + '$' + num + '.' + cents);
+  }
+
 .row-fluid
   .span10.body-container
     %section#utopia-wizard-form.utopia-widget.utopia-form-box
@@ -17,11 +34,13 @@
                         = f.select :goal_id, options_for_select( Goal.all.map { |a| [a.name, a.id] }, f.object.goal_id), {required:true}, {class: "input-fluid" ,disabled: @readonly}
                     = f.fields_for :user_answers do |ff|
                       = ff.hidden_field :question_id
+                      = ff.hidden_field :kind, value:ff.object.question.kind
+
                       .control-group
                         %label#question.control-label= ff.object.question.text
                         .controls
                           - if ff.object.question.kind == 'Value'
-                            = ff.text_field :value, required:true, readonly: @readonly, type:"number", min: "0", class: "input-fluid"
+                            = ff.text_field :value, required:true, readonly: @readonly, type:"text", onBlur:"this.value=formatCurrency(this.value)", placeholder: "$0", class: "input-fluid"
                           - elsif ff.object.question.kind == 'Date'
                             = ff.date_field :value, required:true, readonly: @readonly, type:"date", max: Date.today, class: "input-fluid", value: ff.object.value
                           - elsif ff.object.question.kind == 'Dropdown'
