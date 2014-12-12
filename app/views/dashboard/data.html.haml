@@ -20,15 +20,22 @@
     %section#utopia-wizard-form.utopia-widget.utopia-form-box
       .utopia-widget-title
         = image_tag("img/icons/paragraph_justify.png", class: "utopia-widget-icon")
-        %span Questionaire Data
+        %span Questionnaire Data
       .row-fluid
         .utopia-widget-content
-          .span12.utopia-form-freeSpace
+          .span12
             .sample-form
               %div
                 = form_for @user, :url => { action: "submit", method: "patch" } do |f|
+                  .utopia-from-action{style:"display: table;margin-left: 60px;"}
+                    -if @readonly == true
+                      %button.btn.btn-primary.span5{:type => "submit", :name => "edit"} Edit
+                    -else
+                      %button.btn.btn-primary.span5{:type => "submit"} Save changes
+                      %a{:href => data_path}
+                        %button.btn.span5{:type => "button"} Cancel     
                   %fieldset
-                    .control-group
+                    .control-group.utopia-form-freeSpace
                       %label.control-label Please select a goal
                       .controls
                         = f.select :goal_id, options_for_select( Goal.all.map { |a| [a.name, a.id] }, f.object.goal_id), {required:true}, {class: "input-fluid" ,disabled: @readonly}
@@ -45,10 +52,4 @@
                             = ff.date_field :value, required:true, readonly: @readonly, type:"date", max: Date.today, class: "input-fluid", value: ff.object.value
                           - elsif ff.object.question.kind == 'Dropdown'
                             = ff.select :answer_id, options_for_select( Answer.where(question: ff.object.question.id).map { |a| [a.text, a.id] },ff.object.answer_id), {required:true}, {class: "input-fluid", disabled: @readonly}
-                    .utopia-from-action
-                      -if @readonly == true
-                        %button.btn.btn-primary.span5{:type => "submit", :name => "edit"} Edit
-                      -else
-                        %button.btn.btn-primary.span5{:type => "submit"} Save changes
-                        %a{:href => data_path}
-                          %button.btn.span5{:type => "button"} Cancel     
+                  
