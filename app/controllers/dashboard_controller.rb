@@ -3,7 +3,20 @@ include ActionView::Helpers::NumberHelper
 before_action :require_login, :stats
 
   def stats
-    @ranks = get_ranks
+    @ranks = get_ranks()
+    @tips = {}
+    @tool_tips = ToolTips.all
+    @tool_tips.each do |tip|
+      if tip["rank"] == "RetirementRank"
+        @tips[:retirement_rank] = tip["description"]
+      end
+      if tip["rank"] == "IncomeRank"
+        @tips[:income_rank] = tip["description"]
+      end
+      if tip["rank"] == "FinancialRank"
+        @tips[:financial_rank] = tip["description"]
+      end
+    end
   end
 
   def recommendations

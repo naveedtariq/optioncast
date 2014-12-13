@@ -3,16 +3,30 @@
     .utopia-chart-icon
       = image_tag("img/icons2/money_bag.png")
     .utopia-chart-heading= @ranks[:retirement_rank]
-    .utopia-chart-desc Retirement Rank
+    .utopia-chart-desc 
+      Retirement Rank 
+      %a{:href => "javascript:void(0)", :title => @tips[:retirement_rank]}
+        =image_tag("img/icons/help.png")
+
+      
 .span3
   .utopia-chart-legend
     .utopia-chart-icon
       = image_tag("img/icons2/bill.png")
     .utopia-chart-heading= @ranks[:income_rank]
-    .utopia-chart-desc Income Rank
+    .utopia-chart-desc 
+      Income Rank
+      %a{:href => "javascript:void(0)", :title => @tips[:income_rank]} 
+        =image_tag("img/icons/help.png")
+
+
 .span3
   .utopia-chart-legend
     .utopia-chart-icon
       = image_tag("img/icons2/stats_lines.png")
     .utopia-chart-heading= @ranks[:financial_rank]
-    .utopia-chart-desc Financial Rank
+    .utopia-chart-desc 
+      Financial Rank
+      %a{:href => "javascript:void(0)", :title => @tips[:financial_rank]} 
+        =image_tag("img/icons/help.png")
+
