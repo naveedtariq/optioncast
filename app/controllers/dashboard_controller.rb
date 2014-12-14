@@ -3,33 +3,33 @@ include ActionView::Helpers::NumberHelper
 before_action :require_login, :stats
 
   def stats
-    @ranks = get_ranks()
-    @tips = {}
-    @tool_tips = ToolTips.all
-    @tool_tips.each do |tip|
-      if tip["rank"] == "RetirementRank"
-        @tips[:retirement_rank] = tip["description"]
-      end
-      if tip["rank"] == "IncomeRank"
-        @tips[:income_rank] = tip["description"]
-      end
-      if tip["rank"] == "FinancialRank"
-        @tips[:financial_rank] = tip["description"]
-      end
+    @tips = get_tool_tips()
+    @ranks = ""
+    @financial_status = ""
+    if session[:ranks]
+      @ranks = session[:ranks]
+    else
+      @ranks = get_ranks()
+      session[:ranks] = @ranks
     end
+
+    if session[:financial_status]
+      @financial_status = session[:financial_status]
+    else
+      @financial_status = get_financial_status()
+      session[:financial_status] = @financial_status
+    end
+    
   end
 
+
   def recommendations
-  
     @recommendations = Plan.all
-    
     @collapse_after = 1 
   end
 
   def how_to
-  
     @help_tips = HelpTips.all
-    
   end
 
   def charts
@@ -78,14 +78,11 @@ before_action :require_login, :stats
       if @user.save
         @readonly =true
 
-        if session[:retirement_rank]
-          session.delete(:retirement_rank)
+        if session[:ranks]
+          session.delete(:ranks)
         end
-        if session[:income_rank]
-          session.delete(:income_rank)
-        end
-        if session[:financial_rank]
-          session.delete(:financial_rank)
+        if session[:financial_status]
+          session.delete(:financial_status)
         end
       end
     
@@ -103,13 +100,6 @@ protected
   end
 
   def get_ranks
-
-    if session[:retirement_rank] and session[:income_rank] and session[:financial_rank]
-      puts "ranks: skipped"
-      return {:retirement_rank => session[:retirement_rank], 
-              :income_rank => session[:income_rank], 
-              :financial_rank => session[:financial_rank]}
-    end
 
     @user = User.includes(:user_answers).find_by_id(current_user.id)
 
@@ -139,14 +129,10 @@ protected
       @age = 0
     end
     
-    {:retirement_rank => get_retirement_rank, :income_rank => get_income_rank, :financial_rank=> get_financial_rank}
+    return {:retirement_rank => get_retirement_rank, :income_rank => get_income_rank, :financial_rank=> get_financial_rank}
   end
 
   def get_retirement_rank
-    if session[:retirement_rank]
-      puts "retirement_rank skipped"
-      return session[:retirement_rank]
-    end
 
     @retirement_rank = 'NA'
 
@@ -170,16 +156,11 @@ protected
 
     end
 
-    session[:retirement_rank] = @retirement_rank
     return @retirement_rank
 
   end
 
   def get_income_rank
-    if session[:income_rank]
-      puts "income_rank skipped"
-      return session[:income_rank]
-    end
 
     @income_rank = 'NA'
 
@@ -199,16 +180,11 @@ protected
     
     end
 
-    session[:income_rank] = @income_rank
     return @income_rank
 
   end
 
   def get_financial_rank
-    if session[:financial_rank]
-      puts "financial_rank skipped"
-      return session[:financial_rank]
-    end
 
     @financial_rank = 'NA'
 
@@ -250,10 +226,68 @@ protected
 
     end
 
-    session[:financial_rank] = @financial_rank
     return @financial_rank
 
   end
+
+  def get_tool_tips 
+    @tips = {}
+    @tool_tips = ToolTips.all
+    @tool_tips.each do |tip|
+      if tip["rank"] == "RetirementRank"
+        @tips[:retirement_rank] = tip["description"]
+      end
+      if tip["rank"] == "IncomeRank"
+        @tips[:income_rank] = tip["description"]
+      end
+      if tip["rank"] == "FinancialRank"
+        @tips[:financial_rank] = tip["description"]
+      end
+    end
+    return @tips
+  end
+
+  def get_financial_status()
+
+    if @ranks[:income_rank] == 'NA' or @ranks[:retirement_rank] == 'NA'
+      return [];
+    end
+
+    @q1 = "Your current income of #{number_to_currency(@annual_income)} puts you in the #{@ranks[:income_rank]} percentile."
+    @q2 = "In order to retire by 67 with your current lifestyle, experts recommend that you should have saved #{number_to_currency(@projected_savings)} by now."
+    @q3 = "Your total savings is #{@ranks[:retirement_rank]}% of the recommended level."
+    
+    @dept_income_pecentage = 100
+    if @annual_income > 0
+      @dept_income_pecentage = (@debt/50) / (@annual_income/12)* 100
+    end
+
+    @skip = false
+    @q4 = ""
+    if  @dept_income_pecentage > 40
+      @q4 = "Budgeting and finding ways to lower your debt should be one of your top priorities. Otherwise, too much of your income is going to be eaten up by debt payments rather than going towards your nest egg. Personal Capital and Future Advisor have great tools to help you with that." 
+    elsif @dept_income_pecentage >= 35 and @dept_income_pecentage <= 40
+      @q4 = "Your total debt is manageable for your income level but you don’t have a lot of wiggle room.  Temporary unemployment or expenses such as medical bills can really throw you off track. Maintaining an emergency fund of 3-6 months of living expenses, in addition to your retirement savings, is important so that you don’t find yourself racking up credit card debt to handle the unexpected. Personal Capital and Future Advisor have great free tools to help you maintain your budget and avoid debt."
+    elsif @dept_income_pecentage < 35 and @ranks[:retirement_rank] < 100
+      @q4 = "Based on the low amount of debt relative to your income level, your savings should be much higher to this point. Staying on top of your personal finances using budgeting tools from Personal Capital and Future Advisor should help you increase your savings for retirement."
+    elsif @dept_income_pecentage < 35
+      @q4 = "Your overall debt and monthly payments are very manageable given your income so your main focus should be on growing your savings and not debt reduction. Personal Capital and Future Advisor have great free tools as well as low cost premium services to help you improve your investment returns."
+      @skip = true
+    end
+          
+    @q5 = ""
+    if @skip == false
+      if @ranks[:retirement_rank] < 80
+        @q5 = "In order to improve your retirement outlook, we recommend trying some of the free tools available to you at Personal Capital and Future Advisor."
+      elsif @ranks[:retirement_rank] >= 80 and @ranks[:retirement_rank] <= 125
+        @q5 = "While your savings is roughly where it should be, unforeseen expenses might require an additional cushion to last through your retirement years. Our partners at Personal Capital and Future Advisor specialize in helping you manage your money and grow your savings so that you will have enough money to retire comfortably."
+      elsif @ranks[:retirement_rank] > 125
+        @q5 = "Congratulations, your current retirement savings of #{number_to_currency(@projected_savings-@total_savings)} exceeds the amount you should have saved at this point in your career. Our partners at Personal Capital and Future Advisor have tools and advisors that can help you manage your money and grow your savings so that you can remain ahead of the curve."
+      end
+    end
+    return [@q1,@q2,@q3,@q4,@q5]
+  end
+
 
 end
 

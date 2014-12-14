@@ -47,14 +47,11 @@ class UsersController < ApplicationController
       session[:user] = params[:user]
     end
 
-    if session[:retirement_rank]
-      session.delete(:retirement_rank)
+    if session[:ranks]
+      session.delete(:ranks)
     end
-    if session[:income_rank]
-      session.delete(:income_rank)
-    end
-    if session[:financial_rank]
-      session.delete(:financial_rank)
+    if session[:financial_status]
+      session.delete(:financial_status)
     end
 
     if user_signed_in?

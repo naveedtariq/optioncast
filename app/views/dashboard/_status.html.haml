@@ -1,0 +1,17 @@
+.row-fluid
+  .span12
+    .row-fluid
+      .span10
+        .row-fluid
+          .span12
+            %section.utopia-widget
+              .utopia-widget-title
+                = image_tag("img/icons/paragraph_justify.png", class: "utopia-widget-icon")
+                %span How is your financial status
+              .utopia-widget-content
+                %ul
+                  -@financial_status.each_with_index do |status,index|
+                    -if status != ""
+                      %li= status
+                      -if index >= 2
+                        %br
