@@ -4732,6 +4732,9 @@ a.badge:hover {
 .leftmenu ul li a.editor {
     background-position: -154px -258px;
 }
+.leftmenu ul li a.help {
+    background-position: -189px -114px;
+}
 .leftmenu ul li a.grid {
     background-position: -190px -438px;
 }

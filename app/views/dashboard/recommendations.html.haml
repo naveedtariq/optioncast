@@ -2,13 +2,16 @@
   function switchDisplay(index) {
   var x = document.getElementById("top"+index);
   var y = document.getElementById("bottom"+index);
+  var z = document.getElementById("header"+index);
   if(x.style.display!="none")
   { 
   y.style.display="block";
+  z.style.display="block";
   }
   else
   {
   y.style.display="none";
+  z.style.display="none";
   }
   }
 
@@ -26,6 +29,7 @@
                 .utopia-widget-title{ :onClick => "switchDisplay('#{index}')" }
                   = image_tag("img/icons/paragraph_justify.png", class: "utopia-widget-icon")
                   %span #{r.name} 
+                  %span{ :id=> "header#{index}",:style=>"float:right; margin-right:30px; display: #{index >= @collapse_after ? 'block' : 'none'};"} Learn More
                 .utopia-widget-content{:id => "top#{index}", :style => "display: #{index < @collapse_after ? 'block' : 'none'};"}
                   %h1 #{r.name}
                   %h3 #{r.about}
