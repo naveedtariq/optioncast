@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   get 'about' => "static_pages#about"
   get 'contact' => "static_pages#contact"
+  get 'error' => "static_pages#error"
 
   get 'recommendations' =>  "dashboard#recommendations"
   get 'charts' =>  "dashboard#charts"
