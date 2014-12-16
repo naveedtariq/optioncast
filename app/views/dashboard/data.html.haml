@@ -15,6 +15,15 @@
   return (((sign)?'':'-') + '$' + num + '.' + cents);
   }
 
+  $(document).ready(function(){
+    $('[data-behaviour~=datepicker]').datepicker({
+      format: 'mm/dd/yyyy',
+      endDate: 'today',
+      autoclose: true,
+      startView: 2
+    });
+  })
+
 .row-fluid
   .span10.body-container
     %section#utopia-wizard-form.utopia-widget.utopia-form-box
@@ -49,7 +58,7 @@
                           - if ff.object.question.kind == 'Value'
                             = ff.text_field :value, required:true, readonly: @readonly, type:"text", onBlur:"this.value=formatCurrency(this.value)", placeholder: "$0", class: "input-fluid"
                           - elsif ff.object.question.kind == 'Date'
-                            = ff.date_field :value, required:true, readonly: @readonly, type:"date", max: Date.today, class: "input-fluid", value: ff.object.value
+                            = ff.text_field :value, "data-behaviour" => 'datepicker', required:true, readonly: @readonly, type:"text", class: "input-fluid", placeholder:"mm/dd/yyyy", value: ff.object.value
                           - elsif ff.object.question.kind == 'Dropdown'
                             = ff.select :answer_id, options_for_select( Answer.where(question: ff.object.question.id).map { |a| [a.text, a.id] },ff.object.answer_id), {required:true}, {class: "input-fluid", disabled: @readonly}
                   

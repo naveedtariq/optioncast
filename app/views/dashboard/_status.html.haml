@@ -7,11 +7,10 @@
             %section.utopia-widget
               .utopia-widget-title
                 = image_tag("img/icons/paragraph_justify.png", class: "utopia-widget-icon")
-                %span How is your financial status
+                %span About Your Financial Status
               .utopia-widget-content
-                %ul
-                  -@financial_status.each_with_index do |status,index|
-                    -if status != ""
-                      %li= status
-                      -if index >= 2
-                        %br
+                -@financial_status.each_with_index do |status,index|
+                  -if status != ""
+                    %p= status
+                    -if index >= 2
+                      %br

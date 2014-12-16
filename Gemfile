@@ -19,6 +19,7 @@ gem 'therubyracer',  platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -47,6 +48,7 @@ gem 'seed_dump'
 
 gem "rack-reverse-proxy", :require => "rack/reverse_proxy"  
 
+gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails', :git => 'git://github.com/Nerian/bootstrap-datepicker-rails.git'
 group :development, :test do
     gem 'rspec-rails', '~> 2.14.2'
     gem 'annotate', '~> 2.4.1.beta'  

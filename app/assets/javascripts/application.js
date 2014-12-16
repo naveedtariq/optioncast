@@ -15,6 +15,7 @@
 //= require plugins/jquery-ui/jquery-ui-1.10.2.custom.min
 //= require plugins/bootstrap/js/bootstrap.min
 //= require jquery_ujs
+//= require jquery.ui.all
 //= require bootstrap.min
 //= require plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min
 //= require plugins/blockUI/jquery.blockUI
@@ -48,4 +49,7 @@
 //=require custom
 //= require plugins/respond.min
 //= require plugins/excanvas.min
+
+//= require bootstrap-datepicker
+
 //require_tree .

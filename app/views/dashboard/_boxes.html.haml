@@ -1,6 +1,14 @@
 :javascript
   window.twttr=(function(d,s,id){var t,js,fjs=d.getElementsByTagName(s)[0];if(d.getElementById(id)){return}js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);return window.twttr||(t={_e:[],ready:function(f){t._e.push(f)}})}(document,"script","twitter-wjs"));
 
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1418207255078789',
+      xfbml      : true,
+      version    : 'v2.1'
+      });
+    };
+
   (function(d, s, id){
      var js, fjs = d.getElementsByTagName(s)[0];
      if (d.getElementById(id)) {return;}
@@ -9,41 +17,53 @@
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 
+  function fbfeed() {
+  FB.api('/me/feed', 'post', { message: body }, function(response) {
+    if (!response || response.error) {
+      alert('Error occured');
+    } else {
+      alert('Post ID: ' + response.id);
+    }
+  });
+  }   
+
+
+
+
 .span3
   .utopia-chart-legend{:style => "height: 170px"}
     .utopia-chart-icon
       = image_tag("img/icons2/money_bag.png")
-    .utopia-chart-heading= (@ranks["retirement_rank"] ? @ranks["retirement_rank"] : @ranks[:retirement_rank])
+    .utopia-chart-heading= @ranks["retirement_rank"]
     .utopia-chart-desc 
       Retirement Rank 
       %a{:href => "javascript:void(0)", :title => @tips[:retirement_rank]}
         =image_tag("img/icons/help.png")
     %div{:style=>"margin-top:3px;"}
       .fb-share-button{"data-href" => "http://www.financialrank.com/", "data-layout" => "button", :style=>"vertical-align:super;"}
-      %a.twitter-share-button{"data-text" => "My RetirementRank is #{(@ranks["retirement_rank"] ? @ranks["retirement_rank"] : @ranks[:retirement_rank])}% of the average! How close are you to retirement? Find out at", "data-url" => "http://www.FinancialRank.com/" ,"data-count" => "none"} Tweet
-      
+      %a.twitter-share-button{"data-text" => "My RetirementRank is #{@ranks["retirement_rank"]}% of the average! How close are you to retirement? Find out at", "data-url" => "http://www.FinancialRank.com/" ,"data-count" => "none"} Tweet
 .span3
   .utopia-chart-legend{:style => "height: 170px"}
     .utopia-chart-icon
       = image_tag("img/icons2/bill.png")
-    .utopia-chart-heading= (@ranks["income_rank"] ? @ranks["income_rank"] : @ranks[:income_rank])
+    .utopia-chart-heading= @ranks["income_rank"]
     .utopia-chart-desc 
       Income Rank
       %a{:href => "javascript:void(0)", :title => @tips[:income_rank]} 
         =image_tag("img/icons/help.png")
     %div{:style=>"margin-top:3px;"}
       .fb-share-button{"data-href" => "http://www.financialrank.com/", "data-layout" => "button", :style=>"vertical-align:super;"}
-      %a.twitter-share-button{"data-text" => "My IncomeRank score is #{(@ranks["income_rank"] ? @ranks["income_rank"] : @ranks[:income_rank])} out of 100! Find yours and compare yourself to others at", "data-url" => "http://www.FinancialRank.com/" ,"data-count" => "none"} Tweet
+      %a.twitter-share-button{"data-text" => "My IncomeRank score is #{@ranks["income_rank"]} out of 100! Find yours and compare yourself to others at", "data-url" => "http://www.FinancialRank.com/" ,"data-count" => "none"} Tweet
 
 .span3
   .utopia-chart-legend{:style => "height: 170px"}
     .utopia-chart-icon
       = image_tag("img/icons2/stats_lines.png")
-    .utopia-chart-heading= (@ranks["financial_rank"] ? @ranks["financial_rank"] : @ranks[:financial_rank])
+    .utopia-chart-heading= @ranks["financial_rank"]
     .utopia-chart-desc 
       Financial Rank
       %a{:href => "javascript:void(0)", :title => @tips[:financial_rank]} 
         =image_tag("img/icons/help.png")
     %div{:style=>"margin-top:3px;"}
       .fb-share-button{"data-href" => "http://www.financialrank.com/", "data-layout" => "button", :style=>"vertical-align:super;"}
-      %a.twitter-share-button{"data-text" => "My FinancialRank score is #{(@ranks["financial_rank"] ? @ranks["financial_rank"] : @ranks[:financial_rank])}out of 100! Find yours and compare yourself to others at", "data-url" => "http://www.FinancialRank.com/" ,"data-count" => "none"} Tweet
+      %a.twitter-share-button{"data-text" => "My FinancialRank score is #{@ranks["financial_rank"]}out of 100! Find yours and compare yourself to others at", "data-url" => "http://www.FinancialRank.com/" ,"data-count" => "none"} Tweet

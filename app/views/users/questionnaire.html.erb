@@ -16,6 +16,15 @@
     return (((sign)?'':'-') + '$' + num + '.' + cents);
   }
 
+  $(document).ready(function(){
+    $('[data-behaviour~=datepicker]').datepicker({
+      format: 'mm/dd/yyyy',
+      endDate: 'today',
+      autoclose: true,
+      startView: 2
+    });
+  })
+
 </script>
 
 <div class="main-login col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
@@ -33,18 +42,16 @@
           <%= f.select :goal_id, options_for_select( Goal.all.map { |a| [a.name, a.id] }, f.object.goal_id), {required:true}, {class: "form-control", style:"width: 60%;margin: 1% 3%"} %>
         </div>
       </fieldset>
-
       <%= f.fields_for :user_answers do |ff| %>
         <fieldset>
           <%= ff.hidden_field :question_id%>
           <%= ff.hidden_field :kind, value:ff.object.question.kind%>
-
           <div class="form-group">
             <h4 class="control-label" style="width: 97%;margin: 1% 3%" id="question" ><%= ff.object.question.text %></h4>
             <% if ff.object.question.kind == 'Value'%>
               <%= ff.text_field :value, required:true, type:"text", onBlur:"this.value=formatCurrency(this.value)", placeholder: "$0", class: "form-control", style:"width: 60%;margin: 1% 3%"%>
             <% elsif ff.object.question.kind == 'Date'%>
-              <%= ff.date_field :value, required:true, type:"date", max: Date.today, class: "form-control", style:"width: 60%;margin: 1% 3%", value: ff.object.value%>
+              <%= ff.text_field :value, "data-behaviour" => 'datepicker', required:true, type:"text", class: "form-control", style:"width: 60%;margin: 1% 3%", value: ff.object.value, placeholder:"mm/dd/yyyy"%>
             <% elsif ff.object.question.kind == 'Dropdown'%>
               <%= ff.select :answer_id, options_for_select( Answer.where(question: ff.object.question.id).map { |a| [a.text, a.id] },ff.object.answer_id), {required:true}, {class: "form-control", style:"width: 60%;margin: 1% 3%"} %>
             <% end %>

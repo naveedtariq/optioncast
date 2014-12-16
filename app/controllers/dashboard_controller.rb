@@ -25,7 +25,7 @@ before_action :require_login, :stats
 
   def recommendations
     @recommendations = Plan.all
-    @collapse_after = 1 
+    @collapse_after = 0
   end
 
   def how_to
@@ -105,9 +105,9 @@ protected
 
     if !@user or @user.user_answers.length == 0 
       puts "ranks: user not found"
-      return {:retirement_rank => 'NA',
-              :income_rank => 'NA', 
-              :financial_rank => 'NA'}
+      return {"retirement_rank" => 'NA',
+              "income_rank" => 'NA', 
+              "financial_rank" => 'NA'}
     end
 
     @user_answers = {}
@@ -123,13 +123,13 @@ protected
     @debt = @user_answers[5].to_f
     
     @current_date = Date.today 
-    @date_of_birth = Date::strptime(@date_of_birth_str,"%Y-%m-%d") 
+    @date_of_birth = Date::strptime(@date_of_birth_str,"%m/%d/%Y") 
     @age = @current_date.year - @date_of_birth.year - (@date_of_birth.to_date.change(:year => @current_date.year) > @current_date ? 1 : 0)
     if @age < 0
       @age = 0
     end
     
-    return {:retirement_rank => get_retirement_rank, :income_rank => get_income_rank, :financial_rank=> get_financial_rank}
+    return {"retirement_rank" => get_retirement_rank, "income_rank" => get_income_rank, "financial_rank" => get_financial_rank}
   end
 
   def get_retirement_rank
@@ -249,13 +249,13 @@ protected
 
   def get_financial_status()
 
-    if @ranks[:income_rank] == 'NA' or @ranks[:retirement_rank] == 'NA'
+    if @ranks["income_rank"] == 'NA' or @ranks["retirement_rank"] == 'NA'
       return [];
     end
 
-    @q1 = "Your current income of #{number_to_currency(@annual_income)} puts you in the #{@ranks[:income_rank]} percentile."
+    @q1 = "Your current income of #{number_to_currency(@annual_income)} puts you in the #{@ranks["income_rank"]} percentile."
     @q2 = "In order to retire by 67 with your current lifestyle, experts recommend that you should have saved #{number_to_currency(@projected_savings)} by now."
-    @q3 = "Your total savings is #{@ranks[:retirement_rank]}% of the recommended level."
+    @q3 = "Your total savings is #{@ranks["retirement_rank"]}% of the recommended level."
     
     @dept_income_pecentage = 100
     if @annual_income > 0
@@ -268,7 +268,7 @@ protected
       @q4 = "Budgeting and finding ways to lower your debt should be one of your top priorities. Otherwise, too much of your income is going to be eaten up by debt payments rather than going towards your nest egg. Personal Capital and Future Advisor have great tools to help you with that." 
     elsif @dept_income_pecentage >= 35 and @dept_income_pecentage <= 40
       @q4 = "Your total debt is manageable for your income level but you don’t have a lot of wiggle room.  Temporary unemployment or expenses such as medical bills can really throw you off track. Maintaining an emergency fund of 3-6 months of living expenses, in addition to your retirement savings, is important so that you don’t find yourself racking up credit card debt to handle the unexpected. Personal Capital and Future Advisor have great free tools to help you maintain your budget and avoid debt."
-    elsif @dept_income_pecentage < 35 and @ranks[:retirement_rank] < 100
+    elsif @dept_income_pecentage < 35 and @ranks["retirement_rank"] < 100
       @q4 = "Based on the low amount of debt relative to your income level, your savings should be much higher to this point. Staying on top of your personal finances using budgeting tools from Personal Capital and Future Advisor should help you increase your savings for retirement."
     elsif @dept_income_pecentage < 35
       @q4 = "Your overall debt and monthly payments are very manageable given your income so your main focus should be on growing your savings and not debt reduction. Personal Capital and Future Advisor have great free tools as well as low cost premium services to help you improve your investment returns."
@@ -277,11 +277,11 @@ protected
           
     @q5 = ""
     if @skip == false
-      if @ranks[:retirement_rank] < 80
+      if @ranks["retirement_rank"] < 80
         @q5 = "In order to improve your retirement outlook, we recommend trying some of the free tools available to you at Personal Capital and Future Advisor."
-      elsif @ranks[:retirement_rank] >= 80 and @ranks[:retirement_rank] <= 125
+      elsif @ranks["retirement_rank"] >= 80 and @ranks["retirement_rank"] <= 125
         @q5 = "While your savings is roughly where it should be, unforeseen expenses might require an additional cushion to last through your retirement years. Our partners at Personal Capital and Future Advisor specialize in helping you manage your money and grow your savings so that you will have enough money to retire comfortably."
-      elsif @ranks[:retirement_rank] > 125
+      elsif @ranks["retirement_rank"] > 125
         @q5 = "Congratulations, your current retirement savings of #{number_to_currency(@projected_savings-@total_savings)} exceeds the amount you should have saved at this point in your career. Our partners at Personal Capital and Future Advisor have tools and advisors that can help you manage your money and grow your savings so that you can remain ahead of the curve."
       end
     end
