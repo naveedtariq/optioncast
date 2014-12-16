@@ -55,5 +55,7 @@ module OptionCast
         config.console = Pry
       end
     end
+
+    config.exceptions_app = self.routes
   end
 end
