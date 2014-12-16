@@ -1,5 +1,5 @@
 class ErrorsController < ActionController::Base
-  layout 'dashboard'
+  layout 'application'
 
   def not_found
   end
