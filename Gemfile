@@ -46,6 +46,9 @@ gem 'haml-rails'
 
 gem 'seed_dump'
 
+gem 'actionpack-page_caching'
+gem 'actionpack-action_caching'
+
 gem "rack-reverse-proxy", :require => "rack/reverse_proxy"  
 
 gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails', :git => 'git://github.com/Nerian/bootstrap-datepicker-rails.git'

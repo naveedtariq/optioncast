@@ -2,6 +2,8 @@ class DashboardController < ApplicationController
 include ActionView::Helpers::NumberHelper
 before_action :require_login, :stats
 
+  caches_action :recommendations, :how_to, :get_tool_tips, :get_income_rank_meta
+
   def stats
     @tips = get_tool_tips()
     @ranks = ""
@@ -160,12 +162,26 @@ protected
 
   end
 
+  def get_income_rank_meta
+    @IncomeRankMetadata = []
+    IncomeRankMetadata.all.order("lower_income").each do |m|
+      @IncomeRankMetadata << m
+    end
+    return @IncomeRankMetadata
+  end
+
   def get_income_rank
 
     @income_rank = 'NA'
+ 
+    @IncomeRankMetadata = get_income_rank_meta
+    @income_rank_range = ""
+    @IncomeRankMetadata.each do |r|
+      if r["lower_income"] <= @annual_income and (r["upper_income"] == nil or r["upper_income"] >= @annual_income)
+        @income_rank_range = r
+      end
+    end
 
-    @income_rank_range = IncomeRankMetadata.where("lower_income <= #{@annual_income} and (upper_income >= #{@annual_income} or upper_income is NULL)").first
-    
     if @income_rank_range
       @lower_income = @income_rank_range["lower_income"].to_f
       @upper_income = @income_rank_range["upper_income"].to_f

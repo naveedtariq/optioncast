@@ -17,18 +17,31 @@
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 
-  function fbfeed() {
-  FB.api('/me/feed', 'post', { message: body }, function(response) {
-    if (!response || response.error) {
-      alert('Error occured');
-    } else {
-      alert('Post ID: ' + response.id);
+  window.onload=function(){
+    document.getElementById('shareBtn').onclick = function() {
+      FB.ui({
+        method: 'feed',
+        name: 'my share',
+        link: 'http://www.financialrank.com/',
+        picture: 'http://www.financialrank.com/assets/FinancialRankImg-ab354253a8a4bd87592bbeb707e3d287.png',
+        caption: 'financial',
+        description: 'your score is asd'
+      }, function(response){});
     }
-  });
-  }   
+  };
 
-
-
+:css
+  .btn.btn2 {
+    background-image: url("/assets/fb_button.png");
+    background-size: 56px 20px;
+    height: 20px;
+    width: 56px;
+    vertical-align:super;
+    background-position: 0 -1px;
+  }
+  .btn.btn2:hover {
+    background-position: 0 -1px;
+  }
 
 .span3
   .utopia-chart-legend{:style => "height: 170px"}
@@ -38,9 +51,10 @@
     .utopia-chart-desc 
       Retirement Rank 
       %a{:href => "javascript:void(0)", :title => @tips[:retirement_rank]}
-        =image_tag("img/icons/help.png")
+        =image_tag "img/icons/help.png"
     %div{:style=>"margin-top:3px;"}
-      .fb-share-button{"data-href" => "http://www.financialrank.com/", "data-layout" => "button", :style=>"vertical-align:super;"}
+
+      =button_tag "", {:class => "btn btn2 ", :id => "shareBtn"}
       %a.twitter-share-button{"data-text" => "My RetirementRank is #{@ranks["retirement_rank"]}% of the average! How close are you to retirement? Find out at", "data-url" => "http://www.FinancialRank.com/" ,"data-count" => "none"} Tweet
 .span3
   .utopia-chart-legend{:style => "height: 170px"}
@@ -52,7 +66,7 @@
       %a{:href => "javascript:void(0)", :title => @tips[:income_rank]} 
         =image_tag("img/icons/help.png")
     %div{:style=>"margin-top:3px;"}
-      .fb-share-button{"data-href" => "http://www.financialrank.com/", "data-layout" => "button", :style=>"vertical-align:super;"}
+      =button_tag "", {:class => "btn btn2 ", :id => "shareBtn"}
       %a.twitter-share-button{"data-text" => "My IncomeRank score is #{@ranks["income_rank"]} out of 100! Find yours and compare yourself to others at", "data-url" => "http://www.FinancialRank.com/" ,"data-count" => "none"} Tweet
 
 .span3
@@ -65,5 +79,5 @@
       %a{:href => "javascript:void(0)", :title => @tips[:financial_rank]} 
         =image_tag("img/icons/help.png")
     %div{:style=>"margin-top:3px;"}
-      .fb-share-button{"data-href" => "http://www.financialrank.com/", "data-layout" => "button", :style=>"vertical-align:super;"}
+      =button_tag "", {:class => "btn btn2 ", :id => "shareBtn"}
       %a.twitter-share-button{"data-text" => "My FinancialRank score is #{@ranks["financial_rank"]}out of 100! Find yours and compare yourself to others at", "data-url" => "http://www.FinancialRank.com/" ,"data-count" => "none"} Tweet

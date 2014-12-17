@@ -57,5 +57,7 @@ module OptionCast
     end
 
     config.exceptions_app = self.routes
+    require 'actionpack/action_caching'
+    require 'actionpack/page_caching'
   end
 end
