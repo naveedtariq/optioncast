@@ -3,11 +3,11 @@
 
   window.fbAsyncInit = function() {
     FB.init({
-      appId      : '1418207255078789',
+      appId      : '1640455416182073',
       xfbml      : true,
-      version    : 'v2.1'
-      });
-    };
+      version    : 'v2.2'
+    });
+  };
 
   (function(d, s, id){
      var js, fjs = d.getElementsByTagName(s)[0];
@@ -22,10 +22,11 @@
       FB.ui({
         method: 'feed',
         name: 'my share',
+        redirect_uri: 'http://www.financialrank.com/',
         link: 'http://www.financialrank.com/',
         picture: 'http://www.financialrank.com/assets/FinancialRankImg-ab354253a8a4bd87592bbeb707e3d287.png',
         caption: 'financial',
-        description: 'your score is asd'
+        description: 'your score is 53'
       }, function(response){});
     }
   };

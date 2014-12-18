@@ -2,7 +2,7 @@ class DashboardController < ApplicationController
 include ActionView::Helpers::NumberHelper
 before_action :require_login, :stats
 
-  caches_action :recommendations, :how_to, :get_tool_tips, :get_income_rank_meta
+  #caches_action :recommendations, :how_to, :get_tool_tips, :get_income_rank_meta
 
   def stats
     @tips = get_tool_tips()
