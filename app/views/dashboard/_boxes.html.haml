@@ -18,17 +18,44 @@
    }(document, 'script', 'facebook-jssdk'));
 
   window.onload=function(){
-    document.getElementById('shareBtn').onclick = function() {
+    document.getElementById('shareBtnRetirement').onclick = function() {
+      var x = document.getElementById('retirement_rank').innerText;
+      FB.ui({
+        method: 'feed',
+        name: 'FinancialRank',
+        redirect_uri: 'http://www.financialrank.com/',
+        link: 'http://www.financialrank.com/',
+        picture: 'http://www.financialrank.com/assets/FinancialRankImg-ab354253a8a4bd87592bbeb707e3d287.png',
+        caption: 'My RetirementRank is ' + x +'% of the average! How close are you to retirement? Find out at FinancialRank.com',
+        description: 'your score is 53'
+      }, function(response){});
+    };
+
+    document.getElementById('shareBtnIncome').onclick = function() {
+      var y = document.getElementById('income_rank').innerText;
       FB.ui({
         method: 'feed',
         name: 'my share',
         redirect_uri: 'http://www.financialrank.com/',
         link: 'http://www.financialrank.com/',
         picture: 'http://www.financialrank.com/assets/FinancialRankImg-ab354253a8a4bd87592bbeb707e3d287.png',
-        caption: 'financial',
+        caption: 'My IncomeRank score is ' + y + ' out of 100! Find yours and compare yourself to others at FinancialRank.com',
         description: 'your score is 53'
       }, function(response){});
-    }
+    };
+
+    document.getElementById('shareBtnFinancial').onclick = function() {
+      var z = document.getElementById('financial_rank').innerText;
+      FB.ui({
+        method: 'feed',
+        name: 'my share',
+        redirect_uri: 'http://www.financialrank.com/',
+        link: 'http://www.financialrank.com/',
+        picture: 'http://www.financialrank.com/assets/FinancialRankImg-ab354253a8a4bd87592bbeb707e3d287.png',
+        caption: 'My FinancialRank score is ' + z + ' out of 100! Find yours and compare yourself to others at FinancialRank.com',
+        description: 'your score is 53'
+      }, function(response){});
+    };
   };
 
 :css
@@ -48,37 +75,37 @@
   .utopia-chart-legend{:style => "height: 170px"}
     .utopia-chart-icon
       = image_tag("img/icons2/money_bag.png")
-    .utopia-chart-heading= @ranks["retirement_rank"]
+    .utopia-chart-heading{:id => "retirement_rank"}= @ranks["retirement_rank"]
     .utopia-chart-desc 
       Retirement Rank 
       %a{:href => "javascript:void(0)", :title => @tips[:retirement_rank]}
         =image_tag "img/icons/help.png"
     %div{:style=>"margin-top:3px;"}
 
-      =button_tag "", {:class => "btn btn2 ", :id => "shareBtn"}
+      =button_tag "", {:class => "btn btn2 ", :id => "shareBtnRetirement"}
       %a.twitter-share-button{"data-text" => "My RetirementRank is #{@ranks["retirement_rank"]}% of the average! How close are you to retirement? Find out at", "data-url" => "http://www.FinancialRank.com/" ,"data-count" => "none"} Tweet
 .span3
   .utopia-chart-legend{:style => "height: 170px"}
     .utopia-chart-icon
       = image_tag("img/icons2/bill.png")
-    .utopia-chart-heading= @ranks["income_rank"]
+    .utopia-chart-heading{:id => "income_rank"}= @ranks["income_rank"]
     .utopia-chart-desc 
       Income Rank
       %a{:href => "javascript:void(0)", :title => @tips[:income_rank]} 
         =image_tag("img/icons/help.png")
     %div{:style=>"margin-top:3px;"}
-      =button_tag "", {:class => "btn btn2 ", :id => "shareBtn"}
+      =button_tag "", {:class => "btn btn2 ", :id => "shareBtnIncome"}
       %a.twitter-share-button{"data-text" => "My IncomeRank score is #{@ranks["income_rank"]} out of 100! Find yours and compare yourself to others at", "data-url" => "http://www.FinancialRank.com/" ,"data-count" => "none"} Tweet
 
 .span3
   .utopia-chart-legend{:style => "height: 170px"}
     .utopia-chart-icon
       = image_tag("img/icons2/stats_lines.png")
-    .utopia-chart-heading= @ranks["financial_rank"]
+    .utopia-chart-heading{:id => "financial_rank"}= @ranks["financial_rank"]
     .utopia-chart-desc 
       Financial Rank
       %a{:href => "javascript:void(0)", :title => @tips[:financial_rank]} 
         =image_tag("img/icons/help.png")
     %div{:style=>"margin-top:3px;"}
-      =button_tag "", {:class => "btn btn2 ", :id => "shareBtn"}
+      =button_tag "", {:class => "btn btn2 ", :id => "shareBtnFinancial"}
       %a.twitter-share-button{"data-text" => "My FinancialRank score is #{@ranks["financial_rank"]}out of 100! Find yours and compare yourself to others at", "data-url" => "http://www.FinancialRank.com/" ,"data-count" => "none"} Tweet
