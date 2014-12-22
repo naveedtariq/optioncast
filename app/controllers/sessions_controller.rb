@@ -1,7 +1,5 @@
 class SessionsController < Devise::SessionsController
 
-caches_action :create
-
   def create
     user = User.find_by_email(params[:email].downcase)
 
