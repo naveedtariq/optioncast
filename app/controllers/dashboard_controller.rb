@@ -33,6 +33,75 @@ before_action :require_login, :stats
   end
 
   def charts
+    @chart_data = []
+
+    @user = User.includes(:user_answers).find_by_id(current_user.id)
+
+    if !@user or @user.user_answers.length == 0 
+      puts "charts: user not found"
+      return @chart_data
+    end
+
+    @user_answers = {}
+
+    @user.user_answers.each do |ans|
+      @user_answers [ans.question_id] = ans.value
+    end
+
+    @date_of_birth_str = @user_answers[1]
+    @annual_income = @user_answers[2].to_f
+    @retirement_savings = @user_answers[3].to_f
+    
+    @current_date = Date.today 
+    @date_of_birth = Date::strptime(@date_of_birth_str,"%m/%d/%Y") 
+    @age = @current_date.year - @date_of_birth.year - (@date_of_birth.to_date.change(:year => @current_date.year) > @current_date ? 1 : 0)
+    if @age < 0
+      @age = 0
+    end
+
+    max_age = 67
+    if @age > max_age 
+      return @chart_data
+    end
+
+    rate_of_return = 0.07
+    saving_rate = 0.05
+    amount = 0
+    rate = 0
+
+
+    if params["amount"]
+      amount = params["amount"].to_s.gsub(/[$,]/,'').to_f
+    end
+
+    if params["percent"]
+      rate = params["percent"].to_s.gsub(/[%]/,'').to_f / 100
+    end
+    
+    yearly_saving = @annual_income * saving_rate
+
+    if rate > 0
+      yearly_saving = @annual_income * rate
+      @percent = params["percent"]
+    elsif amount > 0
+      yearly_saving = amount
+      @amount = params["amount"]
+    end
+    
+
+    
+    
+
+    previous_value = @retirement_savings
+
+    (@age..max_age).each do |age|
+      value = previous_value*(1+rate_of_return) + yearly_saving
+      @chart_data << [age,value]
+      previous_value = value
+    end
+
+    @text = "With annual saving of #{number_to_currency(yearly_saving)}, and #{number_to_percentage(rate_of_return*100)} rate of return; at age of #{max_age} you would have saved #{number_to_currency(previous_value)}."
+
   end
 
   def averages

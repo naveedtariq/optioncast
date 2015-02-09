@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get 'how_to' =>  "dashboard#how_to"
 
   patch '/dashboard/submit' => 'dashboard#submit'
+  post '/dashboard/charts' =>  "dashboard#charts"
 
   match '/404', :to => 'errors#not_found', via: :all
   match '/500', :to => 'errors#internal_error', via: :all
