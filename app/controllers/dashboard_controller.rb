@@ -25,7 +25,7 @@ before_action :require_login, :stats
 
   def recommendations
     @recommendations = Plan.all
-    @collapse_after = 0
+    @collapse_after = 1
   end
 
   def how_to
